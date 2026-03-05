@@ -1,0 +1,5 @@
+{
+  "buildCommand": "vike build",
+  "outputDirectory": "dist/client",
+  "framework": null
+}
