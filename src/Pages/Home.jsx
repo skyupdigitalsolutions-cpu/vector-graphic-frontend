@@ -4,7 +4,6 @@ import Nav from "../Components/Nav";
 import Footer from "../Components/Footer";
 import OurWork from "../Components/Home/OurWork";
 import ThoughtsSection from "../Components/Home/HomeThoughts";
-import { HeroCarousel } from "../Components/HeroCaraousel";
 import CTASection from "../Components/CTASection";
 import A5 from "../Components/About/A5";
 import Card from "../Components/Home/Card";
@@ -43,7 +42,14 @@ const Home = () => {
           We Build Packaging Designs That Convert - Proven Results.
         </h2>
       </div>
-      <HeroCarousel />
+       <div className="w-full">
+        <img
+          src="/images/hero_banner_1.webp"
+          alt="Food Packaging Design"
+          className="w-full h-[250px] md:h-[400px] lg:h-[600px] object-cover"
+        />
+      </div>
+
       <Card />
       <ServicesSection />
       <OurWork />
