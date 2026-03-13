@@ -193,6 +193,12 @@ export default function A2() {
             gap: 15px !important;
           }
         }
+         @media (max-width: 639px){
+  .cards-grid{
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
       `}</style>
 
       {/* MARQUEE */}
@@ -247,7 +253,7 @@ export default function A2() {
         </div>
 
         {/* CARDS */}
-        <div className="grid grid-cols-1 gap-4 w-full mx-auto sm:grid-cols-2 sm:gap-5 sm:max-w-[720px] lg:grid-cols-3 lg:gap-10 lg:max-w-[1280px]">
+        <div className="cards-grid grid grid-cols-1 gap-4 w-full mx-auto sm:grid-cols-2 sm:gap-5 sm:max-w-[720px] lg:grid-cols-3 lg:gap-10 lg:max-w-[1280px]">
           {beliefs.map((b, i) => (
             <div
               key={b.num}
