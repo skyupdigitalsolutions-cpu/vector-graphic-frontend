@@ -126,7 +126,7 @@ else if (dragX <= -DRAG_THRESHOLD) {
 
   return (
     // ONLY mobile changed: w-[393px] h-[511px] — md/lg remain exactly as original
-<section className="w-full min-h-screen md:min-h-0 lg:h-[730px] flex items-center justify-center bg-[#1a1a1a] overflow-hidden md:py-16">
+ <section className="w-full h-auto md:min-h-0 lg:h-[730px] flex items-center justify-center bg-[#1a1a1a] overflow-hidden py-10 md:py-16">
       <div className="flex flex-col md:flex-row items-start md:items-center w-full max-w-6xl px-6 md:px-10 gap-6 md:gap-0">
 
         {/* Left / Top: Text panel */}
