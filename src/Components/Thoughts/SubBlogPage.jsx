@@ -263,7 +263,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
       {/* ── Header ── */}
       <div className="px-5 md:px-10 lg:px-[80px] md:pt-6 md:pb-4 flex flex-col justify-center text-center items-center">
         <h1
-          className="max-w-[1200px] font-bold text-[26px] md:text-[34px] lg:text-[50px] text-gray-900 leading-tight text-center"
+          className="max-w-[1200px] font-bold text-[20px] md:text-[34px] lg:text-[50px] text-gray-900 leading-tight text-center"
           style={{ fontFamily: "unbounded" }}
         >
           {blog.title}

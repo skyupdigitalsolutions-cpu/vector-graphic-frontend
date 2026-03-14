@@ -121,31 +121,45 @@ const ServiceCard = ({ title, description, logo, logoHover }) => {
 
 export default function ServicesSection() {
   return (
-    <section
-      className="w-full py-14 lg:py-35 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images/service_banner.webp')" }}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-5">
-        <h2
-          className="text-[24px] md:text-[26px] lg:text-[50px] text-white mb-3"
-          style={{ fontFamily: "unbounded", fontWeight: 500 }}
-        >
-          Our Services
-        </h2>
-        <p
-          className="text-[14px] md:text-[20px] lg:text-[18px] text-white/70 mb-8"
-          style={{ fontFamily: "poppins", fontWeight: 400 }}
-        >
-          Our packaging includes eye-catching visuals optimized for retail
-          shelves and e-commerce.
-        </p>
+    <>
+      <style>{`
+        .services-section {
+          background-image: url('/public/images/Our_Service_Background_Mobile.webp');
+          background-size: 100% 100%;
+          background-position: center top;
+          background-repeat: no-repeat;
+        }
+        @media (min-width: 768px) {
+          .services-section {
+            background-image: url('/images/service_banner.webp');
+            background-position: center center;
+          }
+        }
+      `}</style>
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
-          {services.map((s) => (
-            <ServiceCard key={s.title} {...s} />
-          ))}
+      <section className="services-section w-full py-14 lg:py-35">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-5">
+          <h2
+            className="text-[24px] md:text-[26px] lg:text-[50px] text-white mb-3"
+            style={{ fontFamily: "unbounded", fontWeight: 500 }}
+          >
+            Our Services
+          </h2>
+          <p
+            className="text-[14px] md:text-[20px] lg:text-[18px] text-white/70 mb-8"
+            style={{ fontFamily: "poppins", fontWeight: 400 }}
+          >
+            Our packaging includes eye-catching visuals optimized for retail
+            shelves and e-commerce.
+          </p>
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+            {services.map((s) => (
+              <ServiceCard key={s.title} {...s} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

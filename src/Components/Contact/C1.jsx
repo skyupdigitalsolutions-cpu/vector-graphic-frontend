@@ -378,9 +378,16 @@ export const C1 = () => {
         /* TABLET */
         @media (max-width: 1024px) {
           .c1-heading { font-size: 44px; }
-          .c1-card { border-radius: 28px; padding: 40px; }
-          .c1-card-wrap { border-radius: 38px; }
-          .c1-card-glow { border-radius: 40px; }
+          .c1-card { border-radius: 60px; padding: 40px; }
+          .c1-card-wrap { border-radius: 60px; }
+          .c1-card-glow { border-radius: 60px; }
+          .c1-card-glow { 
+    border-radius: 60px; 
+    overflow: hidden;  /* ← this clips the cimage.png overflow */
+    background: none;  /* ← remove cimage.png on tablet */
+  }
+          .c1-form-bg {
+    background: url("/images/CB.webp") center -212px / 150% 116% no-repeat;
         }
 
         /* MOBILE */
@@ -402,15 +409,15 @@ export const C1 = () => {
   }
 
   .c1-form-bg { 
-    background: url("/images/CB.webp") center top -400px / 145% 140% no-repeat, #181C23;
+    background: url("/images/background_banner.webp") center top -14px / 100% 100% no-repeat, #181C23;
   }
   .c1-form-inner { padding: 30px 16px 60px 16px; }
 
   /* ✅ Remove all card wrapper styling — no black box */
   .c1-card-glow {
-    border-radius: 16px;
-  padding: 2px;
-  
+    border-radius: 20px;
+  padding: 0px;
+  overflow:hidden;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.18) 0%,
@@ -421,22 +428,19 @@ export const C1 = () => {
   }
 
   .c1-card-wrap {
-   border-radius: 15px;
-  padding: 0;
-  background: none;
-  backdrop-filter: none;
-  
+   border-radius: 0px;
+  padding: 16px;
   -webkit-backdrop-filter: none;
-   background: url("/images/cimage.png")  ;
-    border: 20px solid rgba(255, 255, 255, 0.1);
+   background: url("/images/cimage.png") center / cover no-repeat;
+    outline: 0px solid rgba(255, 255, 255, 0.06); /* ← use outline instead of border */
+  border: none;
   }
 
   /* ✅ Card itself gets a subtle glass look directly */
   .c1-card {
-    border-radius: 16px;
+    border-radius: 0px;
     padding: 28px 20px;
     min-height: auto;
-    background: url("/images/cimage.png") center -0px / cover no-repeat;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }

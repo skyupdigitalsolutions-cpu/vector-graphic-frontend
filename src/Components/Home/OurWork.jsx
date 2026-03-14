@@ -56,6 +56,7 @@ function MobileMarquee() {
                 fontWeight: "600",
                 color: "#111111",
                 lineHeight: "150%",
+                fontFamily: "poppins",
                 whiteSpace: "normal",
               }}>
                 {img.title}
