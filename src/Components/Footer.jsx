@@ -90,7 +90,7 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="text-center lg:text-[18px] sm:text-[13px] md:text-[15px] opacity-90 pt-[12px] md:pt-[16px]">
-          © 2026 <span>vectorgraphics.com</span> All Rights Reserved.
+          © 2026 <span>vectorgraphics.com</span> Designed by SKYUP Digital Solutions.
         </div>
       </div>
     </footer>
