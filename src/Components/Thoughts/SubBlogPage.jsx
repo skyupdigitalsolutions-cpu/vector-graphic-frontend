@@ -287,39 +287,36 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
           {/* Article content */}
           <div className="flex-1 max-w-[790px]">
-           <div className="pt-6 mb-6">
+            <div className="pt-6 mb-6">
+              {/* Single rounded card — image + text overlay inside */}
+              <div className="relative w-full h-[210px] lg:h-[462px] bg-gray-100 overflow-hidden rounded-xl">
+                {/* Image */}
+                <img
+                  src={blog.heroImage || blog.src}
+                  alt={blog.title}
+                  className="w-full h-full object-cover"
+                />
 
-  {/* Single rounded card — image + text overlay inside */}
-  <div className="relative w-full h-[210px] lg:h-[462px] bg-gray-100 overflow-hidden rounded-xl">
-    
-    {/* Image */}
-    <img
-      src={blog.heroImage || blog.src}
-      alt={blog.title}
-      className="w-full h-full object-cover"
-    />
+                {/* Dark gradient overlay */}
+                {/* Blur overlay - needs to be taller */}
+                <div className="absolute bottom-0 left-0 right-0 h-[40%] lg:h-[30%]  bg-black/30 backdrop-blur-[21px]" />
 
-    {/* Dark gradient overlay */}
-  <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-black/20 backdrop-blur-[21px]" />
-    {/* Text inside image at bottom */}
-    <div className="absolute bottom-0 left-0 right-0 p-3 lg:p-8">
-      <h2
-        className="text-white text-[16px] lg:text-[20px] font-bold leading-snug mb-2"
-        style={{ fontFamily: "unbounded" }}
-      >
-        {blog.title}
-      </h2>
-      <p
-        className="text-white/60 text-[12px] lg:text-[14px]"
-        style={{ fontFamily: "poppins" }}
-      >
-        {blog.date} &nbsp;·&nbsp; {blog.readTime}
-      </p>
-    </div>
-
-  </div>
-
-</div>
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-6 lg:p-6  md:ml-[16px]">
+                  <h2
+                    className="text-white text-[10px] md:text-[18px] lg:text-[24px]  font-bold mb-1 md:mb-2 leading-tight "
+                    style={{ fontFamily: "unbounded" }}
+                  >
+                    {blog.title}
+                  </h2>
+                  <p
+                    className="text-white/60 text-[10px] md:text-[13px] lg:text-[14px]"
+                    style={{ fontFamily: "poppins" }}
+                  >
+                    {blog.date} &nbsp;·&nbsp; {blog.readTime}
+                  </p>
+                </div>
+              </div>
+            </div>
 
             <BlogContent sections={sections} />
           </div>
