@@ -252,8 +252,16 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
   return (
     <div className="bg-white min-h-screen">
+      <div className="lg:hidden px-2 md:px-1 pb-1 pt-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center  rounded-full text-[14px] bg-[#FFD7D7] px-[10px] py-[10px] text-black transition-colors"
+        >
+          <ChevronLeftIcon />
+        </button> 
+      </div>
       {/* ── Header ── */}
-      <div className="px-5 md:px-10 lg:px-[80px] pt-6 pb-4 flex flex-col justify-center text-center items-center">
+      <div className="px-5 md:px-10 lg:px-[80px] md:pt-6 md:pb-4 flex flex-col justify-center text-center items-center">
         <h1
           className="max-w-[1200px] font-bold text-[26px] md:text-[34px] lg:text-[50px] text-gray-900 leading-tight text-center"
           style={{ fontFamily: "unbounded" }}
@@ -263,7 +271,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
       </div>
 
       {/* ── Main layout: sidebar + content ── */}
-      <div className="px-5 md:px-10 lg:px-[80px] pt-8 pb-1">
+      <div className="px-5 md:px-10 lg:px-[80px] md:pt-8 pt-2 pb-1">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
           {/* Sidebar TOC */}
           {toc.length > 0 && (
