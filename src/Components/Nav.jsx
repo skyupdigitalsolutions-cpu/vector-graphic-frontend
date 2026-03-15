@@ -172,7 +172,9 @@ const Nav = () => {
       `}</style>
 
       <nav className="nav-root">
-        <img src="/images/logo.png" alt="logo" className="nav-logo" />
+        <a href="/home" onClick={(e) => handleNavClick(e, "/home")} style={{ lineHeight: 0 }}>
+  <img src="/images/logo.png" alt="logo" className="nav-logo" />
+</a>
 
         <img
           src="/images/Icon.svg"

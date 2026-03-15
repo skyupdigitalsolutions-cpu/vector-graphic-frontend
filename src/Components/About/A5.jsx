@@ -84,7 +84,7 @@ const marqueeKeyframes = `
       margin-right: 12px;
     }
     .client-marquee {
-      gap: 20px;
+      gap: 10px;
     }
   }
 `;
