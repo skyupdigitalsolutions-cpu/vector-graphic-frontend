@@ -186,7 +186,7 @@ export default function A2() {
 /* Mobile */
 @media (max-width:640px){
   .hero-section{
-    background-image: url('/images/About Us Software BG.webp');
+    background-image: url('/images/Aboutus_softwarebg.webp');
   }
 }
         @media (max-width: 768px) {
