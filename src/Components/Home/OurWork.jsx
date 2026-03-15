@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const allImages = [
-
   { id: 1, src: "/images/workpage_1.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
   { id: 2, src: "/images/workpage_2.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
   { id: 3, src: "/images/workpage_3.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
@@ -12,35 +11,25 @@ const allImages = [
   { id: 8, src: "/images/workpage_8.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
   { id: 9, src: "/images/workpage_9.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
   { id: 10, src: "/images/workpage_10.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
- 
 ];
 
-// ── Mobile: CSS animation (same as desktop, mobile sizes) ─────
+// ── Mobile: touch pause ───────────────────────────────────────
 function MobileMarquee() {
+  const [paused, setPaused] = useState(false);
   const doubled = [...allImages, ...allImages];
 
   return (
-    <div style={{ overflow: "hidden", width: "100%", marginTop: "24px" }}>
-      <div className="ow-marquee-track-mobile">
+    <div style={{ overflow: "hidden", width: "100%", marginTop: "24px" }}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
+      <div
+        className="ow-marquee-track-mobile"
+        style={{ animationPlayState: paused ? "paused" : "running" }}
+      >
         {doubled.map((img, i) => (
-          <div
-            key={i}
-            style={{
-              width: "250px",
-              flexShrink: 0,
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <div
-              style={{
-                width: "250px",
-                height: "220px",
-                borderRadius: "12px",
-                overflow: "hidden",
-                background: "#e5e7eb",
-              }}
-            >
+          <div key={i} style={{ width: "250px", flexShrink: 0, display: "flex", flexDirection: "column" }}>
+            <div style={{ width: "250px", height: "220px", borderRadius: "12px", overflow: "hidden", background: "#e5e7eb" }}>
               <img
                 src={img.src}
                 alt={`work-${img.id}`}
@@ -50,15 +39,7 @@ function MobileMarquee() {
               />
             </div>
             <div style={{ padding: "8px 0 0", width: "250px" }}>
-              <p style={{
-                margin: 0,
-                fontSize: "16px",
-                fontWeight: "600",
-                color: "#111111",
-                lineHeight: "150%",
-                fontFamily: "poppins",
-                whiteSpace: "normal",
-              }}>
+              <p style={{ margin: 0, fontSize: "16px", fontWeight: "600", color: "#111111", lineHeight: "150%", whiteSpace: "normal" }}>
                 {img.title}
               </p>
             </div>
@@ -69,13 +50,20 @@ function MobileMarquee() {
   );
 }
 
-// ── Desktop: CSS marquee with description ─────────────────────
+// ── Desktop: hover pause ──────────────────────────────────────
 function DesktopMarquee() {
+  const [paused, setPaused] = useState(false);
   const doubled = [...allImages, ...allImages];
 
   return (
-    <div style={{ overflow: "hidden", width: "100%", marginTop: "32px" }}>
-      <div className="ow-marquee-track">
+    <div style={{ overflow: "hidden", width: "100%", marginTop: "32px" }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        className="ow-marquee-track"
+        style={{ animationPlayState: paused ? "paused" : "running" }}
+      >
         {doubled.map((img, i) => (
           <div key={i} className="ow-card-wrap">
             <div className="ow-card">
@@ -127,7 +115,6 @@ export default function OurWork() {
           margin: 0;
         }
 
-        /* Desktop track */
         .ow-marquee-track {
           display: flex;
           flex-direction: row;
@@ -138,14 +125,13 @@ export default function OurWork() {
           padding: 8px 0 24px;
         }
 
-        /* Mobile track — same animation, smaller cards */
         .ow-marquee-track-mobile {
           display: flex;
           flex-direction: row;
           align-items: flex-start;
           gap: 16px;
           width: max-content;
-          animation: ow-scroll 25s linear infinite;
+          animation: ow-scroll 35s linear infinite;
           padding: 8px 0 24px;
         }
 
@@ -168,9 +154,7 @@ export default function OurWork() {
           -webkit-user-drag: none;
         }
 
-        .ow-card-desc {
-          padding: 12px 4px 0;
-        }
+        .ow-card-desc { padding: 12px 4px 0; }
 
         .ow-card-title {
           margin: 0 0 4px;
@@ -180,21 +164,10 @@ export default function OurWork() {
         }
       `}</style>
 
-      <section
-        style={{
-          background: "#ffffff",
-          width: "100%",
-          boxSizing: "border-box",
-          paddingTop: "48px",
-          paddingBottom: "48px",
-          overflow: "hidden",
-        }}
-      >
+      <section style={{ background: "#ffffff", width: "100%", boxSizing: "border-box", paddingTop: "48px", paddingBottom: "48px", overflow: "hidden" }}>
         <div className="h-auto flex justify-between md:px-12 px-2">
           <h2 className="ow-heading">Our Work</h2>
-          <a href="/works" className="md:text-[18px] text-[16px]">
-            Browse all ↗
-          </a>
+          <a href="/works" className="md:text-[18px] text-[16px]">Browse all ↗</a>
         </div>
 
         {isMobile ? <MobileMarquee /> : <DesktopMarquee />}

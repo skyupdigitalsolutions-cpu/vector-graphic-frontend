@@ -70,7 +70,7 @@ const marqueeKeyframes = `
   .client-marquee {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 0px;
   }
 
   @media (max-width: 768px) {
@@ -81,10 +81,10 @@ const marqueeKeyframes = `
       width: 160px;
       height: 70px;
       border-radius: 10px;
-      margin-right: 12px;
+      margin-right: 0px;
     }
     .client-marquee {
-      gap: 10px;
+      gap: 0px;
     }
   }
 `;

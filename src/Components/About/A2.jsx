@@ -173,6 +173,22 @@ export default function A2() {
           align-items: center;
           width: max-content;
         }
+          .hero-section{
+  background-image: url('/images/ourservicebackgound.webp'); /* default = desktop */
+}
+  /* Tablet */
+@media (max-width:1024px){
+  .hero-section{
+    background-image: url('/images/ourservicebackgound.webp');
+  }
+}
+
+/* Mobile */
+@media (max-width:640px){
+  .hero-section{
+    background-image: url('/images/About Us Software BG.webp');
+  }
+}
         @media (max-width: 768px) {
           .software-pill {
             width: 218px !important;
@@ -222,8 +238,9 @@ export default function A2() {
         </div>
       </div>
 
-      {/* HERO */}
-      <div style={{backgroundImage:"url('/images/ourservicebackgound.webp')"}} className="w-full box-border text-center  pt-8 pb-12  sm:pt-10 sm:pb-[60px] lg:pt-20 lg:pb-[190px] bg-center bg-no-repeat bg-cover">
+      {/* HERO style={{backgroundImage:"url('/images/ourservicebackgound.webp')"}}*/}
+
+      <div  className="hero-section w-full box-border text-center  pt-8 pb-12  sm:pt-10 sm:pb-[60px] lg:pt-20 lg:pb-[190px] bg-center bg-no-repeat bg-cover">
         <div className="mx-auto mb-5 sm:max-w-[680px] sm:mb-8 lg:max-w-[1036px] lg:mb-11">
           <h1
             className="text-white text-[24px] leading-[1.4] mb-4 text-center block sm:hidden"
