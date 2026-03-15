@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
+
 
 const industries = [
   {
@@ -114,47 +115,95 @@ const styles = `
 
 // ── Mobile: marquee ──────────────────────────────────────────
 function MobileMarquee() {
+  const containerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const [paused, setPaused] = useState(false);
+
+  // ── Mouse drag ──
+  const onMouseDown = (e) => {
+    setIsDragging(true);
+    setPaused(true);
+    setStartX(e.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+  };
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+  const onMouseUp = () => {
+    setIsDragging(false);
+    setPaused(false);
+  };
+
+  // ── Touch drag ──
+  const onTouchStart = (e) => {
+    setPaused(true);
+    setStartX(e.touches[0].pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+  };
+  const onTouchMove = (e) => {
+    const x = e.touches[0].pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+  const onTouchEnd = () => setPaused(false);
 
   return (
     <div className="overflow-hidden w-full">
-
-      <style>
-        {`
-          @keyframes marqueeScroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-          }
-        `}
-      </style>
+      <style>{`
+        @keyframes marqueeScroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        .marquee-track {
+          animation: marqueeScroll 15s linear infinite;
+        }
+        .marquee-track.paused {
+          animation-play-state: paused;
+        }
+        .drag-container {
+          cursor: grab;
+        }
+        .drag-container.dragging {
+          cursor: grabbing;
+        }
+        /* hide scrollbar */
+        .drag-container::-webkit-scrollbar { display: none; }
+        .drag-container { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
 
       <div
-        className="overflow-hidden"
-        
-        onTouchStart={() => setPaused(true)}
-        onTouchEnd={() => setPaused(false)}
+        ref={containerRef}
+        className={`overflow-x-auto drag-container ${isDragging ? "dragging" : ""}`}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseUp}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
-        <div
-          className="flex gap-4 w-max"
-          style={{
-            animation: 'marqueeScroll 15s linear infinite',
-            animationPlayState: paused ? 'paused' : 'running',
-          }}
-        >
+        <div className={`flex gap-4 w-max marquee-track ${paused ? "paused" : ""}`}>
           {[...industries, ...industries].map((ind, i) => (
             <div
               key={i}
-              className="relative flex-shrink-0 
-              w-[75vw] max-w-[353px] min-w-[220px] 
-              h-[280px] rounded-[20px] overflow-hidden
-              sm:w-[70vw] sm:h-[300px]
-              md:w-[60vw] md:h-[320px]
-              lg:w-[45vw]"
+              className="relative flex-shrink-0
+                w-[75vw] max-w-[353px] min-w-[220px]
+                h-[280px] rounded-[20px] overflow-hidden
+                sm:w-[70vw] sm:h-[300px]
+                md:w-[60vw] md:h-[320px]
+                lg:w-[45vw]"
             >
               <img
                 src={ind.image}
                 alt={ind.title}
                 className="w-full h-full object-cover"
+                draggable={false}
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -166,11 +215,9 @@ function MobileMarquee() {
                     {ind.id}
                   </span>
                 </div>
-
                 <h3 className="text-white font-extrabold mb-1 leading-[1.2] text-[clamp(15px,4vw,20px)]">
                   {ind.title}
                 </h3>
-
                 <p className="text-white/70 leading-[1.5] text-[clamp(10px,2.5vw,12px)] line-clamp-2">
                   {ind.description}
                 </p>
@@ -179,7 +226,6 @@ function MobileMarquee() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }
