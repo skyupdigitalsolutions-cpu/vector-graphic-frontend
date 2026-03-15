@@ -6,35 +6,35 @@ const slides = [
     id: 1,
     title: "Artwork & Design",
     description: "We create and adapt artwork for brochures, packaging, labels, and mockups with strong visuals, correct sizing, and balanced color usage.",
-    image: "/images/service_expertise_1",
+    image: "/images/service_expertise_1.webp",
     
   },
   {
     id: 2,
     title: "Brand Strategy",
     description: "We craft compelling brand narratives, visual identities, and strategic positioning that resonate with your target audience.",
-    image: "/images/service_expertise_2",
+    image: "/images/service_expertise_2.webp",
     
   },
   {
     id: 3,
     title: "Print Production",
     description: "From concept to press-ready files, we handle full print production with precision color management and quality assurance.",
-    image: "/images/service_expertise_3",
+    image: "/images/service_expertise_3.webp",
    
   },
   {
     id: 4,
     title: "Digital Marketing",
     description: "We build digital campaigns that convert — from social assets to email templates, optimized for performance and engagement.",
-    image: "/images/service_expertise_4",
+    image: "/images/service_expertise_4.webp",
    
   },
     {
     id: 5,
     title: "Digital Marketing",
     description: "We build digital campaigns that convert — from social assets to email templates, optimized for performance and engagement.",
-    image: "/images/service_expertise_5",
+    image: "/images/service_expertise_5.webp",
    
   },
 ];
