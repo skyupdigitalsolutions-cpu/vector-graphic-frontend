@@ -3,7 +3,7 @@ const A1 = () => (
     {/* Hero Image */}
       <div className="w-full">
         <img
-          src="/images/aboutus_banner.webp"
+          src="/images/About_banner.webp"
           alt="Food Packaging Design"
           className="w-full h-[250px] md:h-[400px] lg:h-[600px] object-cover"
         />
