@@ -7,28 +7,28 @@ const slides = [
     title: "Artwork & Design",
     description: "We create and adapt artwork for brochures, packaging, labels, and mockups with strong visuals, correct sizing, and balanced color usage.",
     image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&q=80",
-    tag: "Design",
+    
   },
   {
     id: 2,
     title: "Brand Strategy",
     description: "We craft compelling brand narratives, visual identities, and strategic positioning that resonate with your target audience.",
     image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500&q=80",
-    tag: "Branding",
+    
   },
   {
     id: 3,
     title: "Print Production",
     description: "From concept to press-ready files, we handle full print production with precision color management and quality assurance.",
     image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=500&q=80",
-    tag: "Print",
+   
   },
   {
     id: 4,
     title: "Digital Marketing",
     description: "We build digital campaigns that convert — from social assets to email templates, optimized for performance and engagement.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80",
-    tag: "Digital",
+   
   },
 ];
 
@@ -209,11 +209,9 @@ else if (dragX <= -DRAG_THRESHOLD) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                    <span className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-[10px] font-medium tracking-wider uppercase mb-2">
-                      {slide.tag}
-                    </span>
-                    <h3 className="text-white font-bold text-base md:text-xl mb-1">{slide.title}</h3>
-                    <p className="text-white/75 text-xs md:text-sm leading-relaxed">{slide.description}</p>
+                    
+                    <h3 className="text-white font-bold text-base text-18 md:text-20 font-unbounded mb-1">{slide.title}</h3>
+                    <p className="text-white/75 text-12 md:text-16 font-poppins leading-relaxed">{slide.description}</p>
                   </div>
                 </div>
               );
