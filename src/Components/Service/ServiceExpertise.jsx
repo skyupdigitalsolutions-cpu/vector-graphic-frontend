@@ -25,15 +25,15 @@ const slides = [
   },
   {
     id: 4,
-    title: "Digital Marketing",
-    description: "We build digital campaigns that convert — from social assets to email templates, optimized for performance and engagement.",
+    title: "Image & Proofing",
+    description: "We handle image retouching,color correction,separations, and digital proofs for clear and accurate final output",
     image: "/images/service_expertise_4.webp",
    
   },
     {
     id: 5,
-    title: "Digital Marketing",
-    description: "We build digital campaigns that convert — from social assets to email templates, optimized for performance and engagement.",
+    title: "Packaging & Print",
+    description: "We deliver mockups, packaging materials, labels, and box printing as complete end-to-end solutions.",
     image: "/images/service_expertise_5.webp",
    
   },
