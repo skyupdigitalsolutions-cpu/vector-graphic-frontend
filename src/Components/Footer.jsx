@@ -1,7 +1,18 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
-const quickLinks = ["Home", "About Us", "Services", "Contact Us"];
+const quickLinks = [
+  { label: "Home", href: "/home" },
+  { label: "About Us", href: "/aboutus" },
+  { label: "Services", href: "/service" },
+  { label: "Contact Us", href: "/contactus" },
+];
+const handleNavClick = (e, href) => {
+  e.preventDefault();
+  window.history.pushState(null, "", href);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+  window.scrollTo(0, 0);
+};
 
 export default function Footer() {
   return (
@@ -53,11 +64,12 @@ export default function Footer() {
 
               {quickLinks.map((link) => (
                 <a
-                  key={link}
-                  href="#"
-                  className="text-[15px] sm:text-[16px] md:text-[18px] opacity-90"
+                   key={link.label}
+          href={link.href}
+          onClick={(e) => handleNavClick(e, link.href)}
+          className="text-[15px] sm:text-[16px] md:text-[18px] opacity-90 hover:opacity-100"
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
             </div>
@@ -89,7 +101,7 @@ export default function Footer() {
         <div className="border-t border-white/40 mt-[32px] md:mt-[40px]" />
 
         {/* COPYRIGHT */}
-       <div className="text-center lg:text-[18px] sm:text-[13px] md:text-[15px] opacity-90 pt-[12px] md:pt-[16px]">
+        <div className="text-center lg:text-[18px] sm:text-[13px] md:text-[15px] opacity-90 pt-[12px] md:pt-[16px]">
   © 2026 <span>vectorgraphics.com </span>
   <span className="block sm:inline">Designed by SKYUP Digital Solutions.</span>
 </div>
