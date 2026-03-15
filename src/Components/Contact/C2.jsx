@@ -62,7 +62,7 @@ const C2 = () => {
               key={i}
   href={card.href}
   target="_blank"
-              className="flex-1 flex flex-col gap-4 p-[24px_28px] rounded-2xl box-border max-lg:basis-[calc(50%-13px)] max-lg:min-w-[220px] max-sm:basis-full max-sm:w-full"
+              className="flex-1 flex flex-col gap-3 p-[24px_28px] rounded-2xl box-border max-lg:basis-[calc(50%-13px)] max-lg:min-w-[220px] max-sm:basis-full max-sm:w-full"
               style={{
                 background: "#FFF2F2",
                 border: "1.5px solid transparent",
@@ -81,14 +81,14 @@ const C2 = () => {
               {/* Title & desc */}
               <div className="flex flex-col gap-[6px]">
                 <h3
-                  className="text-[24px] m-0 font-semibold leading-[140%]"
+                  className="text-[20px] lg:text-[24px] m-0 font-semibold leading-[140%]"
                   style={{ fontFamily: "'Poppins', sans-serif" }}
                 >
                   {card.title}
                 </h3>
 
                 <p
-                  className="text-[18px] text-black/50 m-0 font-normal leading-[140%]"
+                  className="text-[16px] lg:text-[18px] text-black/50 m-0 font-normal leading-[140%]"
                   style={{ fontFamily: "'Poppins', sans-serif" }}
                 >
                   {card.desc}
@@ -97,14 +97,12 @@ const C2 = () => {
 
               {/* Link / address */}
               <p
-                className="text-[20px] m-0 font-normal leading-[140%] whitespace-pre-line"
+                className="text-[18px] lg:text-[20px] m-0 font-normal leading-[140%] whitespace-pre-line"
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
                 {card.href}
               </p>
-            </a>
-  
-          
+            </a>     
           ))}
         </div>
       </div>
