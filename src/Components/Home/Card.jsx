@@ -114,61 +114,72 @@ const styles = `
 
 // ── Mobile: marquee ──────────────────────────────────────────
 function MobileMarquee() {
+  const [paused, setPaused] = useState(false);
+
   return (
     <div className="overflow-hidden w-full">
 
       <style>
         {`
-        @keyframes marqueeScroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
+          @keyframes marqueeScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+          }
         `}
       </style>
 
-      <div className="flex gap-4 w-max animate-[marqueeScroll_5s_linear_infinite]">
+      <div
+        className="overflow-hidden"
+        
+        onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setPaused(false)}
+      >
+        <div
+          className="flex gap-4 w-max"
+          style={{
+            animation: 'marqueeScroll 15s linear infinite',
+            animationPlayState: paused ? 'paused' : 'running',
+          }}
+        >
+          {[...industries, ...industries].map((ind, i) => (
+            <div
+              key={i}
+              className="relative flex-shrink-0 
+              w-[75vw] max-w-[353px] min-w-[220px] 
+              h-[280px] rounded-[20px] overflow-hidden
+              sm:w-[70vw] sm:h-[300px]
+              md:w-[60vw] md:h-[320px]
+              lg:w-[45vw]"
+            >
+              <img
+                src={ind.image}
+                alt={ind.title}
+                className="w-full h-full object-cover"
+              />
 
-        {[...industries, ...industries].map((ind, i) => (
-          <div
-            key={i}
-            className="relative flex-shrink-0 
-            w-[75vw] max-w-[353px] min-w-[220px] 
-            h-[280px] rounded-[20px] overflow-hidden
-            sm:w-[70vw] sm:h-[300px]
-            md:w-[60vw] md:h-[320px]
-            lg:w-[45vw]"
-          >
-            
-            <img
-              src={ind.image}
-              alt={ind.title}
-              className="w-full h-full object-cover"
-            />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-end p-[18px]">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-[18px] h-[1px] bg-white/50" />
+                  <span className="text-[10px] tracking-[1px] text-white/60">
+                    {ind.id}
+                  </span>
+                </div>
 
-            <div className="absolute inset-0 flex flex-col justify-end p-[18px]">
+                <h3 className="text-white font-extrabold mb-1 leading-[1.2] text-[clamp(15px,4vw,20px)]">
+                  {ind.title}
+                </h3>
 
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-[18px] h-[1px] bg-white/50" />
-                <span className="text-[10px] tracking-[1px] text-white/60">
-                  {ind.id}
-                </span>
+                <p className="text-white/70 leading-[1.5] text-[clamp(10px,2.5vw,12px)] line-clamp-2">
+                  {ind.description}
+                </p>
               </div>
-
-              <h3 className="text-white font-extrabold mb-1 leading-[1.2] text-[clamp(15px,4vw,20px)]">
-                {ind.title}
-              </h3>
-
-              <p className="text-white/70 leading-[1.5] text-[clamp(10px,2.5vw,12px)] line-clamp-2">
-                {ind.description}
-              </p>
-
             </div>
-          </div>
-        ))}
-
+          ))}
+        </div>
       </div>
+
     </div>
   );
 }
