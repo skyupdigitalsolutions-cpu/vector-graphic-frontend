@@ -1,27 +1,92 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const allImages = [
-  { id: 1, src: "/images/workpage_1.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 2, src: "/images/workpage_2.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 3, src: "/images/workpage_3.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 4, src: "/images/workpage_4.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 5, src: "/images/workpage_5.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 6, src: "/images/workpage_6.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 7, src: "/images/workpage_7.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 8, src: "/images/workpage_8.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
-  { id: 9, src: "/images/workpage_9.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 1,  src: "/images/workpage_1.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 2,  src: "/images/workpage_2.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 3,  src: "/images/workpage_3.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 4,  src: "/images/workpage_4.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 5,  src: "/images/workpage_5.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 6,  src: "/images/workpage_6.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 7,  src: "/images/workpage_7.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 8,  src: "/images/workpage_8.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
+  { id: 9,  src: "/images/workpage_9.webp",  title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
   { id: 10, src: "/images/workpage_10.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
 ];
 
-// ── Mobile: touch pause ───────────────────────────────────────
+// ── Shared drag hook ──────────────────────────────────────────
+function useDrag() {
+  const containerRef  = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [paused,     setPaused]     = useState(false);
+  const startX    = useRef(0);
+  const scrollLeft = useRef(0);
+
+  // Mouse
+  const onMouseDown = (e) => {
+    setIsDragging(true);
+    setPaused(true);
+    startX.current     = e.pageX - containerRef.current.offsetLeft;
+    scrollLeft.current = containerRef.current.scrollLeft;
+  };
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x    = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    containerRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+  const onMouseUp = () => {
+    setIsDragging(false);
+    setPaused(false);
+  };
+
+  // Touch
+  const onTouchStart = (e) => {
+    setPaused(true);
+    startX.current     = e.touches[0].pageX - containerRef.current.offsetLeft;
+    scrollLeft.current = containerRef.current.scrollLeft;
+  };
+  const onTouchMove = (e) => {
+    const x    = e.touches[0].pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    containerRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+  const onTouchEnd = () => setPaused(false);
+
+  return {
+    containerRef, isDragging, paused, setPaused,
+    onMouseDown, onMouseMove, onMouseUp,
+    onTouchStart, onTouchMove, onTouchEnd,
+  };
+}
+
+// ── Mobile ────────────────────────────────────────────────────
 function MobileMarquee() {
-  const [paused, setPaused] = useState(false);
   const doubled = [...allImages, ...allImages];
+  const {
+    containerRef, isDragging, paused,
+    onMouseDown, onMouseMove, onMouseUp,
+    onTouchStart, onTouchMove, onTouchEnd,
+  } = useDrag();
 
   return (
-    <div style={{ overflow: "hidden", width: "100%", marginTop: "24px" }}
-      onTouchStart={() => setPaused(true)}
-      onTouchEnd={() => setPaused(false)}
+    <div
+      ref={containerRef}
+      onMouseDown={onMouseDown}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={onMouseUp}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      style={{
+        overflowX: "auto",
+        width: "100%",
+        marginTop: "24px",
+        cursor: isDragging ? "grabbing" : "grab",
+        msOverflowStyle: "none",
+        scrollbarWidth: "none",
+      }}
     >
       <div
         className="ow-marquee-track-mobile"
@@ -34,7 +99,7 @@ function MobileMarquee() {
                 src={img.src}
                 alt={`work-${img.id}`}
                 draggable="false"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none", userSelect: "none" }}
                 onError={(e) => (e.target.style.display = "none")}
               />
             </div>
@@ -50,15 +115,34 @@ function MobileMarquee() {
   );
 }
 
-// ── Desktop: hover pause ──────────────────────────────────────
+// ── Desktop ───────────────────────────────────────────────────
 function DesktopMarquee() {
-  const [paused, setPaused] = useState(false);
   const doubled = [...allImages, ...allImages];
+  const {
+    containerRef, isDragging, paused, setPaused,
+    onMouseDown, onMouseMove, onMouseUp,
+    onTouchStart, onTouchMove, onTouchEnd,
+  } = useDrag();
 
   return (
-    <div style={{ overflow: "hidden", width: "100%", marginTop: "32px" }}
+    <div
+      ref={containerRef}
+      onMouseDown={onMouseDown}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={() => { onMouseUp(); setPaused(false); }}
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      style={{
+        overflowX: "auto",
+        width: "100%",
+        marginTop: "32px",
+        cursor: isDragging ? "grabbing" : "grab",
+        msOverflowStyle: "none",
+        scrollbarWidth: "none",
+      }}
     >
       <div
         className="ow-marquee-track"
@@ -71,7 +155,7 @@ function DesktopMarquee() {
                 src={img.src}
                 alt={`work-${img.id}`}
                 draggable="false"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none", userSelect: "none" }}
                 onError={(e) => (e.target.style.display = "none")}
               />
             </div>
@@ -131,9 +215,13 @@ export default function OurWork() {
           align-items: flex-start;
           gap: 16px;
           width: max-content;
-          animation: ow-scroll 35s linear infinite;
+          animation: ow-scroll 25s linear infinite;
           padding: 8px 0 24px;
         }
+
+        /* hide scrollbar on webkit */
+        .ow-marquee-track::-webkit-scrollbar,
+        .ow-marquee-track-mobile::-webkit-scrollbar { display: none; }
 
         .ow-card-wrap {
           flex-shrink: 0;
