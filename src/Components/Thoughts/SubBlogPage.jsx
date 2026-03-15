@@ -331,7 +331,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
         </div>
       </div>
 
-      <CTASection
+      <CTASection backgroundColor="#FFF1F1"
         heading={blog.cta?.heading || "Ready to Elevate Your Packaging?"}
         subheading={
           blog.cta?.subheading ||
