@@ -275,7 +275,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
       {/* ── Main layout: sidebar + content ── */}
       <div className="px-5 md:px-10 lg:px-[80px] md:pt-8 pt-2 pb-1">
         {/* On lg+: flex row (sidebar + article). Below lg: center the article with mx-auto */}
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:items-start">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-14 lg:items-start">
 
           {/* Sidebar TOC — desktop only */}
           {toc.length > 0 && (
@@ -300,7 +300,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
           {/* Article content
               - On lg+: flex-1 takes remaining width beside sidebar
               - Below lg: max-w-[810px] + mx-auto centers it on the page */}
-          <div className="w-full max-w-[810px] mx-auto lg:mx-0 lg:flex-1 px-5">
+          <div className="w-full max-w-[790px] mx-auto lg:mx-0 lg:flex-1 ">
             <div className="pt-6 mb-6">
               {/* Hero image card */}
               <div className="relative w-full h-[210px] lg:h-[462px] bg-gray-100 overflow-hidden rounded-xl">
