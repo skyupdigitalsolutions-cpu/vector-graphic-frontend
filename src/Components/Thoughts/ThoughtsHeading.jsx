@@ -16,7 +16,7 @@ const ThoughtsHeading = () => {
   Thoughts
 </h1>
       <p
-  className="px-[20px] sm:px-[40px] md:px-[30px] lg:px-[156px] pt-[16px] sm:pt-[20px] lg:pt-[20px] mb-[44px] lg:mb-[61px] font-poppins text-[14px] lg:text-[16px]"
+  className="px-[25px] sm:px-[46px] md:px-[30px] lg:px-[156px] pt-[16px] sm:pt-[20px] lg:pt-[20px] mb-[44px] lg:mb-[61px] font-poppins text-[14px] lg:text-[16px]"
   style={{
     letterSpacing: "0%",
     fontWeight: "400",
