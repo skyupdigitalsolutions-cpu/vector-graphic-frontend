@@ -9,7 +9,7 @@ const A1 = () => (
         />
       </div>
     <section className="w-full bg-white">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-10 lg:py-16 xl:py-20">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-6 lg:px-12 xl:px-16 py-10 lg:py-16 xl:py-20">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10 xl:gap-14">
           {/* LEFT */}
           <div
