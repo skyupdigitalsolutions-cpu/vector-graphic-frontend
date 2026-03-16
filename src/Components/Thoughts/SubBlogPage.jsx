@@ -307,17 +307,17 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
                 {/* Dark gradient overlay */}
                 {/* Blur overlay - needs to be taller */}
-                <div className="absolute bottom-0 left-0 right-0 h-[40%] lg:h-[30%]  bg-black/30 backdrop-blur-[21px]" />
+                <div className="absolute bottom-0 left-0 right-0 h-[30%] lg:h-[30%]  bg-black/30 backdrop-blur-[21px]" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-2 md:p-6 lg:p-6  md:ml-[16px]">
                   <h2
-                    className="text-white text-[10px] md:text-[18px] lg:text-[24px]  font-bold mb-1 md:mb-2 leading-tight "
+                    className="text-white text-[10px] md:text-[18px] lg:text-[24px] mb-[-3px] font-bold mb-1 md:mb-2 leading-tight "
                     style={{ fontFamily: "unbounded" }}
                   >
                     {blog.title}
                   </h2>
                   <p
-                    className="text-white/60 text-[10px] md:text-[13px] lg:text-[14px]"
+                    className="text-white/60 text-[10px] mt-[2px] md:text-[13px] lg:text-[14px]"
                     style={{ fontFamily: "poppins" }}
                   >
                     {blog.date} &nbsp;·&nbsp; {blog.readTime}
