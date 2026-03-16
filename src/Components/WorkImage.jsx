@@ -47,7 +47,7 @@ export default function WorkImage({ onCardClick }) {
   return (
     <section className="bg-white w-full">
       <div className="px-[clamp(16px,5vw,64px)] pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:gap-4 md:gap-5 lg:gap-x-[1px] lg:gap-y-[30px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:gap-4 md:gap-5 ">
           {visibleImages.map((img) => (
             <ImageCard
               key={img.id}
