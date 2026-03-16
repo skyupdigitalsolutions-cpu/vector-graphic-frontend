@@ -135,7 +135,12 @@ const styles = `
 const ImageCard = ({ id, src, title, description, onBlogClick }) => (
   <div
     className="thoughts-card-hover thoughts-card"
-    onClick={() => onBlogClick(id)}
+    onClick={() => {
+  window.history.pushState({}, "", "/thoughts");
+  window.dispatchEvent(new Event("popstate"));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  onBlogClick(id);
+}}
   >
     <div className="thoughts-img-wrapper">
       <img
@@ -147,11 +152,9 @@ const ImageCard = ({ id, src, title, description, onBlogClick }) => (
     </div>
     <div className="thoughts-text-block">
       <h3 className="thoughts-title">{title}</h3>
-      {/* <p className="thoughts-desc">{description}</p> */}
     </div>
   </div>
 );
-
 export default function ThoughtsSection({ onBlogClick }) {
   const featuredBlogs = THOUGHTS.slice(0, 2);
 
