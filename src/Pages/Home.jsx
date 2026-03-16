@@ -55,8 +55,9 @@ const Home = () => {
       <OurWork />
       <ThoughtsSection
         onBlogClick={(id) => {
-          setActiveBlogId(id);
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          sessionStorage.setItem("openBlogId", id);
+          sessionStorage.setItem("scrollToTop", "true");
+          navigate("/thoughts");
         }}
       />
       <A5 />
