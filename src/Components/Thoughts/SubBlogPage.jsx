@@ -25,7 +25,7 @@ const renderInlineHTML = (text) => {
 const TableOfContents = ({ items, activeId, onItemClick }) => (
   <div className="sticky top-8 px-10">
     <p
-      className="text-[15px] md:text-[16px] mb-4  "
+      className="text-[15px] md:text-[16px] mb-4"
       style={{ fontFamily: "unbounded", fontWeight: "700", color: "#111111" }}
     >
       In this article
@@ -252,6 +252,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
   return (
     <div className="bg-white min-h-screen">
+      {/* Mobile back button */}
       <div className="lg:hidden px-2 md:px-1 pb-1 pt-3">
         <button
           onClick={onBack}
@@ -264,7 +265,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
       {/* ── Header ── */}
       <div className="px-5 md:px-10 lg:px-[80px] md:pt-6 md:pb-4 flex flex-col justify-center text-center items-center">
         <h1
-          className="max-w-[1200px] font-bold text-[20px] md:text-[34px] lg:text-[50px] text-gray-900 leading-tight text-center"
+          className="max-w-[1200px] font-bold text-[26px] md:text-[34px] lg:text-[50px] text-gray-900 leading-tight text-center"
           style={{ fontFamily: "unbounded" }}
         >
           {blog.title}
@@ -273,8 +274,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
       {/* ── Main layout: sidebar + content ── */}
       <div className="px-5 md:px-10 lg:px-[80px] md:pt-8 pt-2 pb-1">
-        {/* On lg+: flex row (sidebar + article).
-            Below lg: just center the article with mx-auto */}
+        {/* On lg+: flex row (sidebar + article). Below lg: center the article with mx-auto */}
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:items-start">
 
           {/* Sidebar TOC — desktop only */}
@@ -302,7 +302,7 @@ export const SubBlogPage = ({ blogId, onBack }) => {
               - Below lg: max-w-[810px] + mx-auto centers it on the page */}
           <div className="w-full max-w-[810px] mx-auto lg:mx-0 lg:flex-1 px-5">
             <div className="pt-6 mb-6">
-              {/* Single rounded card — image + text overlay inside */}
+              {/* Hero image card */}
               <div className="relative w-full h-[210px] lg:h-[462px] bg-gray-100 overflow-hidden rounded-xl">
                 {/* Image */}
                 <img
@@ -311,18 +311,23 @@ export const SubBlogPage = ({ blogId, onBack }) => {
                   className="w-full h-full object-cover"
                 />
 
-                {/* Blur overlay */}
-                <div className="absolute bottom-0 left-0 right-0 h-[30%] lg:h-[30%] bg-black/30 backdrop-blur-[21px]" />
+                {/* Blur overlay
+                    Mobile: fixed 70px height (from doc3)
+                    Desktop: fixed 138px height (from doc3) */}
+                <div className="absolute bottom-0 left-0 right-0 h-[70px] lg:h-[138px] bg-black/30 backdrop-blur-[21px]" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-6 lg:p-6 md:ml-[16px]">
+                {/* Caption bar
+                    Mobile: fixed 70px, small padding, tiny text (from doc3)
+                    Desktop: fixed 130px, larger padding and text (from doc3) */}
+                <div className="absolute bottom-0 left-0 right-0 h-[70px] lg:h-[130px] flex flex-col justify-center px-2 py-2 md:px-4 md:py-4 lg:px-20 lg:py-23">
                   <h2
-                    className="text-white text-[10px] md:text-[18px] lg:text-[24px] font-bold mb-1 md:mb-2 leading-tight"
+                    className="text-white font-bold leading-tight line-clamp-3 text-[9px] md:text-[18px] lg:text-[24px] mb-[2px] md:mb-2"
                     style={{ fontFamily: "unbounded" }}
                   >
                     {blog.title}
                   </h2>
                   <p
-                    className="text-white/60 text-[10px] mt-[2px] md:text-[13px] lg:text-[14px]"
+                    className="text-white/60 text-[9px] md:text-[13px] lg:text-[14px] mt-[2px]"
                     style={{ fontFamily: "poppins" }}
                   >
                     {blog.date} &nbsp;·&nbsp; {blog.readTime}
