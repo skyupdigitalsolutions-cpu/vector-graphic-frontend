@@ -229,7 +229,7 @@ export default function OurWork() {
       `}</style>
 
       <section style={{ background: "#ffffff", width: "100%", boxSizing: "border-box", paddingTop: "48px", paddingBottom: "48px", overflow: "hidden" }}>
-        <div className="h-auto flex justify-between md:px-12 px-2">
+<div className="h-auto flex justify-between px-[clamp(16px,5vw,80px)]">
           <h2 className="ow-heading">Our Work</h2>
           <a href="/works" className="md:text-[18px] text-[16px]">Browse all ↗</a>
         </div>
