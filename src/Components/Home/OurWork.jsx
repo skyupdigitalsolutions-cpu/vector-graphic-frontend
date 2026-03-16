@@ -133,7 +133,7 @@ function MobileMarquee() {
               />
             </div>
             <div style={{ padding: "8px 0 0", width: "250px" }}>
-              <p style={{ margin: 0, fontSize: "16px", fontWeight: "600", color: "#111111", lineHeight: "150%", whiteSpace: "normal",fontFamily:"Unbounded"  }}>
+              <p style={{ margin: 0, fontSize: "14px", fontWeight: "400", color: "#000000", lineHeight: "150%", whiteSpace: "normal",fontFamily:"Unbounded"  }}>
                 {img.title}
               </p>
             </div>
@@ -191,7 +191,7 @@ function DesktopMarquee() {
               />
             </div>
             <div style={{ padding: "12px 4px 0" }}>
-              <p style={{ margin: "0 0 4px", fontSize: "18px", fontWeight: "600", color: "#111111",fontFamily:"Unbounded"  }}>
+              <p style={{ margin: "0 0 4px", fontSize: "18px", fontWeight: "400", color: "#000000",fontFamily:"Unbounded"  }}>
                 {img.title}
               </p>
             </div>
