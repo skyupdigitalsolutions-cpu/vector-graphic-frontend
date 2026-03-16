@@ -64,10 +64,10 @@ export default function Footer() {
 
               {quickLinks.map((link) => (
                 <a
-                   key={link.label}
-          href={link.href}
-          onClick={(e) => handleNavClick(e, link.href)}
-          className="text-[15px] sm:text-[16px] md:text-[18px] opacity-90 hover:opacity-100"
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-[15px] sm:text-[16px] md:text-[18px] opacity-90 hover:opacity-100"
                 >
                   {link.label}
                 </a>
@@ -81,17 +81,36 @@ export default function Footer() {
               </h3>
 
               <p className="text-[14px] sm:text-[15px] md:text-[18px] opacity-90">
-                Email : info@gmail.com
+                Email : <a href="mailto:info@gmail.com">info@gmail.com</a>
               </p>
               <p className="text-[14px] sm:text-[15px] md:text-[18px] opacity-90">
-                Phone : +91 9986655922
+                <a href="tel:+91 9986655922">Phone : +91 9986655922</a>
               </p>
 
               <div className="flex gap-[18px] md:gap-[20px] mt-[6px]">
-                <FaFacebookF size={18} />
-                <FaInstagram size={18} />
-                <FaTwitter size={18} />
-                <FaYoutube size={18} />
+                <a
+                  href="https://www.facebook.com/people/SKYUP-Digital-Solutions/61584820941998/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebookF size={18} className="transition-transform hover:scale-125" />
+                </a>
+                <a
+                  href="https://www.instagram.com/skyupdigitalsolutions/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram size={18} className="transition-transform hover:scale-125" />
+                </a>
+                <a href="linkedin.com/company/110886969/admin/" target="_blank">
+                  <FaTwitter size={18} className="transition-transform hover:scale-125" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@SKYUPDigitalSolutionsBengaluru"
+                  target="_blank"
+                >
+                  <FaYoutube size={18} className="transition-transform hover:scale-125"/>
+                </a>
               </div>
             </div>
           </div>
@@ -102,9 +121,11 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="text-center lg:text-[18px] sm:text-[13px] md:text-[15px] opacity-90 pt-[12px] md:pt-[16px]">
-  © 2026 <span>vectorgraphics.com </span>
-  <span className="block sm:inline">Designed by SKYUP Digital Solutions.</span>
-</div>
+          © 2026 <span>vectorgraphics.com </span>
+          <span className="block sm:inline">
+            Designed by SKYUP Digital Solutions.
+          </span>
+        </div>
       </div>
     </footer>
   );
