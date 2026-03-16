@@ -87,7 +87,7 @@ const ImageCard = ({ src, title, description }) => (
         loading="lazy"
       />
     </div>
-    <div className="px-1 pt-3">
+    <div className="px-1 pb-4 pt-2">
       <h3
         className="text-gray-900 text-[15px] md:text-[16px] lg:text-[18px]"
         style={{ fontFamily: "unbounded", fontWeight: "600" }}
