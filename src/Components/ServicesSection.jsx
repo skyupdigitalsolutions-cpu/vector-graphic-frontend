@@ -132,6 +132,7 @@ export default function ServicesSection() {
         @media (min-width: 768px) {
           .services-section {
             background-image: url('/images/service_banner.webp');
+            background-size: cover;
             background-position: center center;
           }
         }
