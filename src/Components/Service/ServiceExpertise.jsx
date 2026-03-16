@@ -221,7 +221,7 @@ else if (dragX <= -DRAG_THRESHOLD) {
                     <h3  className="text-18 md:text-20" style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 400,  lineHeight: "100%", letterSpacing: "0%", textAlign: "justify", textTransform: "capitalize", color: "#FFFFFF", maxWidth: "209px" }} className="mb-1">{slide.title}</h3>
                   <p 
   className="hidden sm:block" 
-  style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400,fontSize: "16px",lineHeight: "140%",letterSpacing: "0",textAlign: "justify",color: "#CFCFCF",maxWidth: "494px"}}>{slide.description}</p>
+  style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400,fontSize: "16px",letterSpacing: "0",textAlign: "justify",color: "#CFCFCF",maxWidth: "494px"}}>{slide.description}</p>
                   </div>
                 </div>
               );
