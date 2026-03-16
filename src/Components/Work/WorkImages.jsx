@@ -78,8 +78,8 @@ const INITIAL_COUNT = 10;
 const LOAD_MORE_COUNT = 4;
 
 const ImageCard = ({ src, title, description }) => (
-  <div className="group flex flex-col gap-2  w-full lg:px-[55px] px-[20px] pt-[36px] ">
-    <div className="overflow-hidden w-full  aspect-[620/430] bg-gray-100">
+  <div className="group flex flex-col gap-2 cursor-pointer w-full px-3 lg:px-[45px]">
+    <div className="overflow-hidden w-full aspect-[620/430] bg-gray-100">
       <img
         src={src}
         alt={title}
@@ -119,8 +119,8 @@ export default function WorkImages() {
   return (
     <section className="bg-white w-full  " >
       {/* ── Image grid ── */}
-      <div className=" md:px-6 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:gap-4 md:gap-5 lg:gap-x-[1px] lg:gap-y-[30px]">
+      <div className=" px-[clamp(16px,5vw,64px)] pb-10">
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:gap-4 md:gap-5 ">
           {visibleImages.map((img) => (
             <ImageCard key={img.id} {...img} />
           ))}
