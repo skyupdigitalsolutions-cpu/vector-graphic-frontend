@@ -8,7 +8,8 @@ const C2 = () => {
       ),
       title: "Email",
       desc: "Our friendly team is here to help.",
-      href: "hi@agency.com",
+      href: "mailto:hi@agency.com",
+      display: "hi@agency.com",
     },
     {
       icon: (
@@ -16,7 +17,8 @@ const C2 = () => {
       ),
       title: "Phone",
       desc: "Mon-Fri from 8am to 5pm.",
-      href: "+1 (555) 000-0000",
+      href: "tel:+15550000000",
+      display: "+1 (555) 000-0000",
     },
     {
       icon: (
@@ -28,8 +30,8 @@ const C2 = () => {
       ),
       title: "Office",
       desc: "Come say hello at our office HQ.",
-
-      href: "100 Smith Street\nCollingwood VIC 3066 AU",
+       href: "google.com/maps?ll=13.058405,77.592412&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=11820982111651408683",
+       display: "100 Smith Street\nCollingwood VIC 3066 AU",
     },
   ];
 
@@ -61,7 +63,6 @@ const C2 = () => {
             <a
               key={i}
   href={card.href}
-  target="_blank"
               className="flex-1 flex flex-col gap-3 p-[24px_28px] rounded-2xl box-border max-lg:basis-[calc(50%-13px)] max-lg:min-w-[220px] max-sm:basis-full max-sm:w-full"
               style={{
                 background: "#FFF2F2",
@@ -100,9 +101,9 @@ const C2 = () => {
                 className="text-[18px] lg:text-[20px] m-0 font-normal leading-[140%] whitespace-pre-line"
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
-                {card.href}
+                {card.display}
               </p>
-            </a>     
+            </a> 
           ))}
         </div>
       </div>
