@@ -97,7 +97,7 @@ function FAQItem({ index, question, answer, isNew }) {
 
       {/* Desktop layout */}
       <div className="hidden md:grid md:grid-cols-[80px_1.2fr_1.2fr] md:gap-3 md:items-start py-8 sm:py-10">
-        <span className="text-7xl font-bold text-[#E5E5EA] font-inter relative -top-3">
+        <span className="text-7xl font-bold text-[#9CA3AF] font-inter relative -top-3">
           {index}
         </span>
         <p className="font-bold font-unbounded text-gray-900 lg:text-[18px] leading-snug pr-4">
