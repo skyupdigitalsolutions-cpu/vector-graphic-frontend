@@ -13,84 +13,113 @@ const allImages = [
   { id: 10, src: "/images/workpage_10.webp", title: "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026." },
 ];
 
-// ── Shared drag hook ──────────────────────────────────────────
-function useDrag() {
-  const containerRef  = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [paused,     setPaused]     = useState(false);
-  const startX    = useRef(0);
-  const scrollLeft = useRef(0);
+// ── Shared rAF-based infinite marquee hook ────────────────────
+function useInfiniteMarquee(speed = 0.6) {
+  const trackRef   = useRef(null);
+  const outerRef   = useRef(null);
+  const rafRef     = useRef(null);
+  const posRef     = useRef(0);     // current translateX in px
+  const halfRef    = useRef(0);     // width of one set of cards
+  const dragging   = useRef(false);
+  const lastX      = useRef(0);
+  const hovered    = useRef(false); // desktop: pause on hover
 
-  // Mouse
-  const onMouseDown = (e) => {
-    setIsDragging(true);
-    setPaused(true);
-    startX.current     = e.pageX - containerRef.current.offsetLeft;
-    scrollLeft.current = containerRef.current.scrollLeft;
-  };
-  const onMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x    = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5;
-    containerRef.current.scrollLeft = scrollLeft.current - walk;
-  };
-  const onMouseUp = () => {
-    setIsDragging(false);
-    setPaused(false);
+  useEffect(() => {
+    if (trackRef.current) {
+      halfRef.current = trackRef.current.scrollWidth / 2;
+    }
+
+    const tick = () => {
+      if (!dragging.current && !hovered.current) {
+        posRef.current -= speed;
+        if (Math.abs(posRef.current) >= halfRef.current) {
+          posRef.current = 0;
+        }
+        if (trackRef.current) {
+          trackRef.current.style.transform = `translateX(${posRef.current}px)`;
+        }
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [speed]);
+
+  const onPointerDown = (clientX) => {
+    dragging.current = true;
+    lastX.current = clientX;
+    if (outerRef.current) outerRef.current.style.cursor = "grabbing";
   };
 
-  // Touch
-  const onTouchStart = (e) => {
-    setPaused(true);
-    startX.current     = e.touches[0].pageX - containerRef.current.offsetLeft;
-    scrollLeft.current = containerRef.current.scrollLeft;
+  const onPointerMove = (clientX) => {
+    if (!dragging.current) return;
+    const dx = clientX - lastX.current;
+    lastX.current = clientX;
+    posRef.current += dx;
+    if (posRef.current > 0) posRef.current -= halfRef.current;
+    if (Math.abs(posRef.current) >= halfRef.current) {
+      posRef.current = posRef.current % -halfRef.current;
+    }
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${posRef.current}px)`;
+    }
   };
-  const onTouchMove = (e) => {
-    const x    = e.touches[0].pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5;
-    containerRef.current.scrollLeft = scrollLeft.current - walk;
+
+  const onPointerUp = () => {
+    dragging.current = false;
+    if (outerRef.current) outerRef.current.style.cursor = "grab";
   };
-  const onTouchEnd = () => setPaused(false);
+
+  const setHovered = (val) => { hovered.current = val; };
 
   return {
-    containerRef, isDragging, paused, setPaused,
-    onMouseDown, onMouseMove, onMouseUp,
-    onTouchStart, onTouchMove, onTouchEnd,
+    trackRef,
+    outerRef,
+    onMouseDown:  (e) => onPointerDown(e.clientX),
+    onMouseMove:  (e) => onPointerMove(e.clientX),
+    onMouseUp:    onPointerUp,
+    onMouseLeave: onPointerUp,
+    onTouchStart: (e) => onPointerDown(e.touches[0].clientX),
+    onTouchMove:  (e) => { e.preventDefault(); onPointerMove(e.touches[0].clientX); },
+    onTouchEnd:   onPointerUp,
+    setHovered,
   };
 }
 
 // ── Mobile ────────────────────────────────────────────────────
 function MobileMarquee() {
   const doubled = [...allImages, ...allImages];
-  const {
-    containerRef, isDragging, paused,
-    onMouseDown, onMouseMove, onMouseUp,
-    onTouchStart, onTouchMove, onTouchEnd,
-  } = useDrag();
+  const handlers = useInfiniteMarquee(0.5);
 
   return (
     <div
-      ref={containerRef}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
-      onMouseLeave={onMouseUp}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
+      ref={handlers.outerRef}
+      onMouseDown={handlers.onMouseDown}
+      onMouseMove={handlers.onMouseMove}
+      onMouseUp={handlers.onMouseUp}
+      onMouseLeave={handlers.onMouseLeave}
+      onTouchStart={handlers.onTouchStart}
+      onTouchMove={handlers.onTouchMove}
+      onTouchEnd={handlers.onTouchEnd}
       style={{
-        overflowX: "auto",
+        overflow: "hidden",
         width: "100%",
         marginTop: "24px",
-        cursor: isDragging ? "grabbing" : "grab",
-        msOverflowStyle: "none",
-        scrollbarWidth: "none",
+        cursor: "grab",
       }}
     >
       <div
-        className="ow-marquee-track-mobile"
-        style={{ animationPlayState: paused ? "paused" : "running" }}
+        ref={handlers.trackRef}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-start",
+          gap: "16px",
+          width: "max-content",
+          padding: "8px 0 24px",
+          willChange: "transform",
+        }}
       >
         {doubled.map((img, i) => (
           <div key={i} style={{ width: "250px", flexShrink: 0, display: "flex", flexDirection: "column" }}>
@@ -118,39 +147,41 @@ function MobileMarquee() {
 // ── Desktop ───────────────────────────────────────────────────
 function DesktopMarquee() {
   const doubled = [...allImages, ...allImages];
-  const {
-    containerRef, isDragging, paused, setPaused,
-    onMouseDown, onMouseMove, onMouseUp,
-    onTouchStart, onTouchMove, onTouchEnd,
-  } = useDrag();
+  const handlers = useInfiniteMarquee(0.6);
 
   return (
     <div
-      ref={containerRef}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
-      onMouseLeave={() => { onMouseUp(); setPaused(false); }}
-      onMouseEnter={() => setPaused(true)}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
+      ref={handlers.outerRef}
+      onMouseDown={handlers.onMouseDown}
+      onMouseMove={handlers.onMouseMove}
+      onMouseUp={handlers.onMouseUp}
+      onMouseLeave={() => { handlers.onMouseLeave(); handlers.setHovered(false); }}
+      onMouseEnter={() => handlers.setHovered(true)}
+      onTouchStart={handlers.onTouchStart}
+      onTouchMove={handlers.onTouchMove}
+      onTouchEnd={handlers.onTouchEnd}
       style={{
-        overflowX: "auto",
+        overflow: "hidden",
         width: "100%",
         marginTop: "32px",
-        cursor: isDragging ? "grabbing" : "grab",
-        msOverflowStyle: "none",
-        scrollbarWidth: "none",
+        cursor: "grab",
       }}
     >
       <div
-        className="ow-marquee-track"
-        style={{ animationPlayState: paused ? "paused" : "running" }}
+        ref={handlers.trackRef}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-start",
+          gap: "42px",
+          width: "max-content",
+          padding: "8px 0 24px",
+          willChange: "transform",
+        }}
       >
         {doubled.map((img, i) => (
-          <div key={i} className="ow-card-wrap">
-            <div className="ow-card">
+          <div key={i} style={{ flexShrink: 0, width: "575px" }}>
+            <div style={{ width: "100%", height: "360px", borderRadius: "10px", overflow: "hidden", background: "#e5e7eb" }}>
               <img
                 src={img.src}
                 alt={`work-${img.id}`}
@@ -159,8 +190,10 @@ function DesktopMarquee() {
                 onError={(e) => (e.target.style.display = "none")}
               />
             </div>
-            <div className="ow-card-desc">
-              <p className="ow-card-title">{img.title}</p>
+            <div style={{ padding: "12px 4px 0" }}>
+              <p style={{ margin: "0 0 4px", fontSize: "18px", fontWeight: "600", color: "#111111" }}>
+                {img.title}
+              </p>
             </div>
           </div>
         ))}
@@ -185,11 +218,6 @@ export default function OurWork() {
   return (
     <>
       <style>{`
-        @keyframes ow-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-
         .ow-heading {
           font-family: 'Ultra', sans-serif;
           font-size: clamp(24px, 5vw, 50px);
@@ -197,58 +225,6 @@ export default function OurWork() {
           color: #111111;
           text-align: center;
           margin: 0;
-        }
-
-        .ow-marquee-track {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-start;
-          gap: 42px;
-          width: max-content;
-          animation: ow-scroll 35s linear infinite;
-          padding: 8px 0 24px;
-        }
-
-        .ow-marquee-track-mobile {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-start;
-          gap: 16px;
-          width: max-content;
-          animation: ow-scroll 25s linear infinite;
-          padding: 8px 0 24px;
-        }
-
-        /* hide scrollbar on webkit */
-        .ow-marquee-track::-webkit-scrollbar,
-        .ow-marquee-track-mobile::-webkit-scrollbar { display: none; }
-
-        .ow-card-wrap {
-          flex-shrink: 0;
-          width: 575px;
-        }
-
-        .ow-card {
-          width: 100%;
-          height: 360px;
-          border-radius: 10px;
-          overflow: hidden;
-          background: #e5e7eb;
-        }
-
-        .ow-card img {
-          pointer-events: none;
-          user-select: none;
-          -webkit-user-drag: none;
-        }
-
-        .ow-card-desc { padding: 12px 4px 0; }
-
-        .ow-card-title {
-          margin: 0 0 4px;
-          font-size: 18px;
-          font-weight: 600;
-          color: #111111;
         }
       `}</style>
 
