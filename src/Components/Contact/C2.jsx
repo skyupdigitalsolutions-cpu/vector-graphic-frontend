@@ -34,7 +34,7 @@ const C2 = () => {
   ];
 
   return (
-    <div className="bg-[#F5F5F5] py-20 max-sm:py-10">
+    <div className="bg-[#ffffff] py-20 max-sm:py-10">
       {/* 1280 FRAME */}
       <div className="w-[1280px] mx-auto flex flex-col gap-[60px] box-border max-lg:w-full max-lg:px-8 max-sm:w-full max-sm:px-5 max-sm:gap-[60px]">
         {/* Header */}
