@@ -12,28 +12,36 @@ export const Thoughts = () => {
 
  
 useEffect(() => {
-  const shouldScrollTop = sessionStorage.getItem("scrollToTop");
-  if (shouldScrollTop) {
-    sessionStorage.removeItem("scrollToTop");
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
   }
 
   const storedId = sessionStorage.getItem("openBlogId");
   if (storedId) {
     sessionStorage.removeItem("openBlogId");
     setActiveBlogId(Number(storedId));
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
+    });
     return;
   }
+
   const params = new URLSearchParams(window.location.search);
   const blogId = params.get("blogId");
   if (blogId) setActiveBlogId(Number(blogId));
 }, []);
 
   const handleBlogClick = (id) => {
-    setActiveBlogId(id);
-    window.scrollTo({ top: 0, behavior: "instant" });
-  };
+  history.scrollRestoration = 'manual'; // ← add this
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  setActiveBlogId(id);
+};
 
   const handleBack = () => {
     setActiveBlogId(null);
