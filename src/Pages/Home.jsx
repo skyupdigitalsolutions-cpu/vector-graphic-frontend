@@ -55,10 +55,10 @@ const Home = () => {
       <OurWork />
       <ThoughtsSection
         onBlogClick={(id) => {
-          sessionStorage.setItem("openBlogId", id);
-          sessionStorage.setItem("scrollToTop", "true");
-          navigate("/thoughts");
-        }}
+    history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    setActiveBlogId(id);
+  }}
       />
       <A5 />
       {/* <Cloudy  /> */}
