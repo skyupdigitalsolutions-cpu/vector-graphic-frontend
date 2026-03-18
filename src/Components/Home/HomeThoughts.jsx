@@ -135,11 +135,11 @@ const styles = `
 const ImageCard = ({ id, src, title, description, onBlogClick }) => (
   <div
     className="thoughts-card-hover thoughts-card"
-    onClick={() => {
-  window.history.pushState({}, "", "/thoughts");
-  window.dispatchEvent(new Event("popstate"));
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  onBlogClick(id);
+     onClick={() => {
+  history.scrollRestoration = 'manual';
+  sessionStorage.setItem("openBlogId", String(id));
+  window.scrollTo(0, 0);
+  window.location.href = "/thoughts";
 }}
   >
     <div className="thoughts-img-wrapper">
