@@ -184,9 +184,10 @@ export const SubBlogPage = ({ blogId, onBack }) => {
           text: "Content not added yet. Add sections in src/data/thoughtsData.js",
         },
       ];
-useEffect(() => {
+ useEffect(() => {
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 }, [blogId]);
 
   const toc = useMemo(() => {
