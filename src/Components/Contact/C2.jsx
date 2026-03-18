@@ -30,7 +30,7 @@ const C2 = () => {
       ),
       title: "Office",
       desc: "Come say hello at our office HQ.",
-       href: "google.com/maps?ll=13.058405,77.592412&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=11820982111651408683",
+       href: "https://www.google.com/maps?ll=13.058405,77.592412&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=11820982111651408683",
        display: "100 Smith Street\nCollingwood VIC 3066 AU",
     },
   ];
