@@ -111,7 +111,7 @@ const Services = () => {
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-center items-center mx-auto font-poppins lg:w-[958px] py-4 lg:py-[30px] text-center">
+      <div className="flex flex-col justify-center items-center mx-auto font-poppins lg:w-[958px] py-[16px] lg:py-[60px] text-center">
         <h4 className="h4  text-[14px] lg:text-[20px] font-medium">
           LEADING FOOD PACKAGING DESIGN COMPANY IN INDIA
         </h4>
