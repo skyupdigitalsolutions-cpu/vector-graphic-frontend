@@ -64,7 +64,7 @@ export default function ContactForm() {
     setLoading(true);
     try {
       const res = await fetch(
-        "https://vector-graphics-backend.onrender.com/api/connect-now",
+        "https://vector-graphic-backend.onrender.com/api/connect-now",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
