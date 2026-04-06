@@ -10,6 +10,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [focused, setFocused] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -53,18 +54,35 @@ export default function ContactForm() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
     setErrors({});
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    }, 3000);
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://vector-graphics-backend.onrender.com/api/connect-now",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Something went wrong");
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      }, 3000);
+    } catch (error) {
+      setErrors({ submit: error.message || "Something went wrong. Try again." });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const fields = [
