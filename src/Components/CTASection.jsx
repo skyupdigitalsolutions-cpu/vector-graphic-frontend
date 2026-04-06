@@ -1,58 +1,44 @@
 import React from "react";
 
 export default function CTASection({
-  heading = "Ready to Elevate Your Packaging?",
-  subheading = "Drive faster business growth with innovative solutions and strategies that deliver real results and long-term success.",
+  heading = "Get a proposal.",
+  subheading = "Ready to discuss your project with us?",
   buttonLabel = "Let's Talk",
-  buttonColor = "#C92020",
-  onButtonClick,
-  headingFont = "Ultra, serif",
-  bodyFont = "Poppins, sans-serif",
   backgroundColor = "white",
-  className="",
+  className = "",
 }) {
-  // If it's a CSS color value (hex, rgb, named), use inline style
-  // If it's a Tailwind class (e.g. "bg-gray-100"), use className
   const isCssColor = /^(#|rgb|hsl|[a-z]+$)/.test(backgroundColor.trim());
 
   return (
-    <section
-      className={`${!isCssColor ? backgroundColor : ""} ${className}`}
-      style={isCssColor ? { backgroundColor } : {}}
-    >
+    <section className="bg-black font-poppins">
       <div
-        className="flex flex-col justify-center items-center mx-auto text-center
-                   py-[40px] px-[24px] max-w-[1300px]
+        className="flex flex-col lg:flex-row justify-between items-center text-center lg:text-start mx-auto
+                   py-[40px] font-medium
                    md:py-[60px] md:px-[60px]
-                   lg:py-[80px] lg:px-[100px]"
+                   lg:py-[60px] lg:px-[80px]"
       >
-        <h2
-          className="text-black leading-[1.3] mb-[12px]
-                     text-[22px] md:text-[32px] lg:text-[50px]"
-          style={{ fontFamily: headingFont, fontWeight: "400" }}
-        >
-          {heading}
-        </h2>
-
-        <p
-          className="text-gray-600 leading-[1.6] mb-[28px]
-                     text-[13px]
-                     md:text-[15px] md:mb-[36px]
-                     lg:text-[20px] lg:mb-[40px]"
-          style={{ fontFamily: bodyFont }}
-        >
-          {subheading}
-        </p>
+        <div>
+          <p
+            className="text-white 
+                     text-[18px] py-2
+                     lg:text-[30px] "
+          >
+            {subheading}
+          </p>
+          <h2
+            className="text-white leading-[1.3] font-semibold
+                     text-[22px] md:text-[32px] lg:text-[70px]"
+          >
+            {heading}
+          </h2>
+        </div>
 
         <a
           href="/contactus"
-          onClick={onButtonClick}
-          className="transition-opacity hover:opacity-90 rounded-full text-white
-                     font-poppins flex justify-center items-center
-                     h-[44px] w-[140px] text-[14px]
+          className="font-poppins flex justify-center items-center bg-white font-medium
+                     h-[36px] w-[134px] text-[14px] my-[20px] lg:my-0
                      md:h-[52px] md:w-[180px] md:text-[15px]
-                     lg:h-[60px] lg:w-[248px] lg:text-[20px]"
-          style={{ backgroundColor: buttonColor, fontWeight: "700" }}
+                     lg:h-[68px] lg:w-[280px] lg:text-[30px]"
         >
           {buttonLabel}
         </a>

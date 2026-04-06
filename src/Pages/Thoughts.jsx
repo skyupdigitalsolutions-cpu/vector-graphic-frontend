@@ -66,7 +66,7 @@ useEffect(() => {
       <Nav />
       <ThoughtsHeading />
       <WorkImage onCardClick={handleBlogClick} />
-      <CTASection heading="Explore smart solutions to grow your brand." subheading="Discover smart digital strategies and innovative solutions to grow your brand, reach more customers, and achieve lasting business success."  backgroundColor="#FFF1F1"/>
+      <CTASection/>
       <Footer />
     </>
   );

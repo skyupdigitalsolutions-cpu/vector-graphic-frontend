@@ -119,7 +119,7 @@ export default function WorkImages() {
   return (
     <section className="bg-white w-full  " >
       {/* ── Image grid ── */}
-      <div className=" px-[clamp(16px,5vw,64px)] pb-10">
+      <div className=" px-[clamp(16px,5vw,64px)] ">
          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:gap-4 md:gap-5 ">
           {visibleImages.map((img) => (
             <ImageCard key={img.id} {...img} />

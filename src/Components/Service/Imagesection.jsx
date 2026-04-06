@@ -9,7 +9,6 @@ const images = [
 ];
 
 export default function Imagesection() {
-  
   const [hovered, setHovered] = useState(null);
   const [active, setActive]   = useState(null);
 

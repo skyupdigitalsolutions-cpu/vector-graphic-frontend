@@ -1,11 +1,22 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
-const quickLinks = ["Home", "About Us", "Services", "Contact Us"];
+const quickLinks = [
+  { label: "Home", href: "/home" },
+  { label: "About Us", href: "/branding-solutions-agency" },
+  { label: "Services", href: "/food-packaging-design" },
+  { label: "Contact Us", href: "/contactus" },
+];
+const handleNavClick = (e, href) => {
+  e.preventDefault();
+  window.history.pushState(null, "", href);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+  window.scrollTo(0, 0);
+};
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#C92020] text-white flex justify-center font-urbanist">
+    <footer className="w-full bg-[#C92020] text-white flex justify-center font-poppins">
       <div
         className="w-full max-w-[1192px]
                    mx-auto
@@ -27,19 +38,20 @@ export default function Footer() {
           {/* LEFT BLOCK */}
           <div className="max-w-[420px] flex flex-col gap-[16px]">
             <img
-              src="/images/logo.png"
+              src="/images/vg-logo.svg"
               alt="logo"
-              className="w-[180px] md:w-[220px]"
+              className="w-[180px] md:w-[311px]"
             />
 
             <p className="text-[14px] sm:text-[15px] md:text-[18px] leading-[140%] opacity-90">
-              Images on this website are for representation purposes only.
-              Actual landscapes, layouts, and features may vary. Some visuals
-              are digitally created to illustrate the project concept.
-              <br />
-              Novara Nature Estate reserves the right to modify designs and
-              details without prior notice. These images do not constitute a
-              legal offer or commitment.
+              We have a proven track record of maintaining a solid relationship
+              with the client by thinking out of the box. Our services always
+              focus on igniting your ideas and inspiring you to improve. We have
+              carved a niche in brand enhancement for many clients across India,
+              USA, Australia, UAE and New Zealand. We at DesignerPeople have
+              innovative ideas to empower brands with creativity and diversity.
+              We ensure the brand's growth with professional touch and
+              refinement of artwork.
             </p>
           </div>
 
@@ -53,11 +65,12 @@ export default function Footer() {
 
               {quickLinks.map((link) => (
                 <a
-                  key={link}
-                  href="#"
-                  className="text-[15px] sm:text-[16px] md:text-[18px] opacity-90"
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-[15px] sm:text-[16px] md:text-[18px] opacity-90 hover:opacity-100"
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
             </div>
@@ -69,17 +82,48 @@ export default function Footer() {
               </h3>
 
               <p className="text-[14px] sm:text-[15px] md:text-[18px] opacity-90">
-                Email : info@gmail.com
+                Email : <a href="mailto:info@gmail.com">info@gmail.com</a>
               </p>
               <p className="text-[14px] sm:text-[15px] md:text-[18px] opacity-90">
-                Phone : +91 9986655922
+                <a href="tel:+91 9986655922">Phone : +91 9986655922</a>
               </p>
 
               <div className="flex gap-[18px] md:gap-[20px] mt-[6px]">
-                <FaFacebookF size={18} />
-                <FaInstagram size={18} />
-                <FaTwitter size={18} />
-                <FaYoutube size={18} />
+                <a
+                  href="https://www.facebook.com/people/SKYUP-Digital-Solutions/61584820941998/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebookF
+                    size={18}
+                    className="transition-transform hover:scale-125"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/skyupdigitalsolutions/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram
+                    size={18}
+                    className="transition-transform hover:scale-125"
+                  />
+                </a>
+                <a href="linkedin.com/company/110886969/admin/" target="_blank">
+                  <FaTwitter
+                    size={18}
+                    className="transition-transform hover:scale-125"
+                  />
+                </a>
+                <a
+                  href="https://www.youtube.com/@SKYUPDigitalSolutionsBengaluru"
+                  target="_blank"
+                >
+                  <FaYoutube
+                    size={18}
+                    className="transition-transform hover:scale-125"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -90,9 +134,11 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="text-center lg:text-[18px] sm:text-[13px] md:text-[15px] opacity-90 pt-[12px] md:pt-[16px]">
-  © 2026 <span>vectorgraphics.com </span>
-  <span className="block sm:inline">Designed by SKYUP Digital Solutions.</span>
-</div>
+          © 2026 <span>vectorgraphics.com </span>
+          <span className="block sm:inline">
+            Designed by SKYUP Digital Solutions.
+          </span>
+        </div>
       </div>
     </footer>
   );

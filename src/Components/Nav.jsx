@@ -14,9 +14,9 @@ const Nav = () => {
   }, []);
 
   const links = [
-    { label: "Home", href: "/home" },
-    { label: "About us", href: "/aboutus" },
-    { label: "Service", href: "/service" },
+    { label: "Home", href: "/" },
+    { label: "About us", href: "/branding-solutions-agency" },
+    { label: "Service", href: "/food-packaging-design" },
     { label: "Work", href: "/works" },
     { label: "Thoughts", href: "/thoughts" },
     { label: "Contact us", href: "/contactus"},
@@ -25,8 +25,6 @@ const Nav = () => {
   const isActive = (href) => {
     if (!currentPath) return false;
     if (currentPath === href) return true;
-    // Only treat root as Home if the actual path is exactly "/"
-    if (currentPath === "/" && href === "/home") return true;
     return false;
   };
 
@@ -172,8 +170,8 @@ const Nav = () => {
       `}</style>
 
       <nav className="nav-root">
-        <a href="/home" onClick={(e) => handleNavClick(e, "/home")} style={{ lineHeight: 0 }}>
-  <img src="/images/logo.png" alt="logo" className="nav-logo" />
+        <a href="/" onClick={(e) => handleNavClick(e, "/home")} style={{ lineHeight: 0 }}>
+  <img src="/images/vg-logo.svg" alt="logo" className="nav-logo" />
 </a>
 
         <img
