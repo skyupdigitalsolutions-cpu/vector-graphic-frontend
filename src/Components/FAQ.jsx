@@ -51,7 +51,7 @@ export default function FAQ({
   const visibleFaqs = showAll ? faqs : faqs.slice(0, initialCount);
 
   return (
-    <section className="bg-[#f0f0f0] min-h-screen rounded-2xl lg:rounded-none my-3 mx-2 lg:mx-0 px-4 py-16 sm:px-8 md:px-16 lg:px-24">
+    <section className="bg-[#f0f0f0] mt-0 min-h-screen rounded-2xl lg:rounded-none my-3 lg:mx-0 px-4 py-16 sm:px-8 md:px-16 lg:px-24">
       {/* Title */}
       <h2 className="text-center font-bold font-unbounded text-4xl lg:text-[50px] tracking-tight text-[#C92020] lg:mb-14">
         {title}
@@ -97,7 +97,7 @@ function FAQItem({ index, question, answer, isNew }) {
 
       {/* Desktop layout */}
       <div className="hidden md:grid md:grid-cols-[80px_1.2fr_1.2fr] md:gap-3 md:items-start py-8 sm:py-10">
-        <span className="text-7xl font-bold text-[#E5E5EA] font-inter relative -top-3">
+        <span className="text-7xl font-bold text-[#9CA3AF] font-inter relative -top-3">
           {index}
         </span>
         <p className="font-bold font-unbounded text-gray-900 lg:text-[18px] leading-snug pr-4">

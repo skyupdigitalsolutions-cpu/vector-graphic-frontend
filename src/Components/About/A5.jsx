@@ -44,7 +44,7 @@ const marqueeKeyframes = `
     overflow: hidden;
     width: 320px;
     height: 140px;
-    margin-right: 24px;
+    margin-right: 0px;
     flex-shrink: 0;
     box-sizing: border-box;
   }

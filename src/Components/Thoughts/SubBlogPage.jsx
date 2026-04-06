@@ -23,7 +23,7 @@ const renderInlineHTML = (text) => {
 };
 
 const TableOfContents = ({ items, activeId, onItemClick }) => (
-  <div className="sticky top-8">
+  <div className="sticky top-8 px-10">
     <p
       className="text-[15px] md:text-[16px] mb-4"
       style={{ fontFamily: "unbounded", fontWeight: "700", color: "#111111" }}
@@ -184,6 +184,11 @@ export const SubBlogPage = ({ blogId, onBack }) => {
           text: "Content not added yet. Add sections in src/data/thoughtsData.js",
         },
       ];
+ useEffect(() => {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}, [blogId]);
 
   const toc = useMemo(() => {
     const used = new Map();
@@ -252,18 +257,20 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
   return (
     <div className="bg-white min-h-screen">
+      {/* Mobile back button */}
       <div className="lg:hidden px-2 md:px-1 pb-1 pt-3">
         <button
           onClick={onBack}
-          className="inline-flex items-center  rounded-full text-[14px] bg-[#FFD7D7] px-[10px] py-[10px] text-black transition-colors"
+          className="inline-flex items-center rounded-full text-[14px] bg-[#FFD7D7] px-[10px] py-[10px] text-black transition-colors"
         >
           <ChevronLeftIcon />
-        </button> 
+        </button>
       </div>
+
       {/* ── Header ── */}
       <div className="px-5 md:px-10 lg:px-[80px] md:pt-6 md:pb-4 flex flex-col justify-center text-center items-center">
         <h1
-          className="max-w-[1200px] font-bold text-[20px] md:text-[34px] lg:text-[50px] text-gray-900 leading-tight text-center"
+          className="max-w-[1200px] font-bold text-[26px] md:text-[34px] lg:text-[50px] text-gray-900 leading-tight text-center"
           style={{ fontFamily: "unbounded" }}
         >
           {blog.title}
@@ -272,13 +279,15 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
       {/* ── Main layout: sidebar + content ── */}
       <div className="px-5 md:px-10 lg:px-[80px] md:pt-8 pt-2 pb-1">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
-          {/* Sidebar TOC */}
+        {/* On lg+: flex row (sidebar + article). Below lg: center the article with mx-auto */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-14 lg:items-start">
+
+          {/* Sidebar TOC — desktop only */}
           {toc.length > 0 && (
-            <div className="lg:w-[400px] flex-shrink-0 hidden lg:block mt-4">
+            <div className="lg:w-[400px] flex-shrink-0 hidden lg:block mt-4 px-5">
               <button
                 onClick={onBack}
-                className="inline-flex items-center gap-2 rounded text-[14px] font-poppins font-medium bg-[#FFD7D7] px-[10px] py-[10px] text-black transition-colors mb-6"
+                className="inline-flex items-center gap-2 rounded text-[14px] font-medium bg-[#FFD7D7] px-[10px] py-[10px] text-black transition-colors mb-6"
                 style={{ fontFamily: "poppins" }}
               >
                 <ChevronLeftIcon />
@@ -293,10 +302,12 @@ export const SubBlogPage = ({ blogId, onBack }) => {
             </div>
           )}
 
-          {/* Article content */}
-          <div className="flex-1 max-w-[790px]">
+          {/* Article content
+              - On lg+: flex-1 takes remaining width beside sidebar
+              - Below lg: max-w-[810px] + mx-auto centers it on the page */}
+          <div className="w-full max-w-[790px] mx-auto lg:mx-0 lg:flex-1 ">
             <div className="pt-6 mb-6">
-              {/* Single rounded card — image + text overlay inside */}
+              {/* Hero image card */}
               <div className="relative w-full h-[210px] lg:h-[462px] bg-gray-100 overflow-hidden rounded-xl">
                 {/* Image */}
                 <img
@@ -305,19 +316,23 @@ export const SubBlogPage = ({ blogId, onBack }) => {
                   className="w-full h-full object-cover"
                 />
 
-                {/* Dark gradient overlay */}
-                {/* Blur overlay - needs to be taller */}
-                <div className="absolute bottom-0 left-0 right-0 h-[40%] lg:h-[30%]  bg-black/30 backdrop-blur-[21px]" />
+                {/* Blur overlay
+                    Mobile: fixed 70px height (from doc3)
+                    Desktop: fixed 138px height (from doc3) */}
+                <div className="absolute bottom-0 left-0 right-0 h-[70px] lg:h-[138px] bg-black/30 backdrop-blur-[21px]" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-6 lg:p-6  md:ml-[16px]">
+                {/* Caption bar
+                    Mobile: fixed 70px, small padding, tiny text (from doc3)
+                    Desktop: fixed 130px, larger padding and text (from doc3) */}
+                <div className="absolute bottom-0 left-0 right-0 h-[70px] lg:h-[130px] flex flex-col justify-center px-2 py-2 md:px-4 md:py-4 lg:px-20 lg:py-23">
                   <h2
-                    className="text-white text-[10px] md:text-[18px] lg:text-[24px]  font-bold mb-1 md:mb-2 leading-tight "
+                    className="text-white font-bold leading-tight line-clamp-3 text-[9px] md:text-[18px] lg:text-[24px] mb-[2px] md:mb-2"
                     style={{ fontFamily: "unbounded" }}
                   >
                     {blog.title}
                   </h2>
                   <p
-                    className="text-white/60 text-[10px] md:text-[13px] lg:text-[14px]"
+                    className="text-white/60 text-[9px] md:text-[13px] lg:text-[14px] mt-[2px]"
                     style={{ fontFamily: "poppins" }}
                   >
                     {blog.date} &nbsp;·&nbsp; {blog.readTime}
@@ -328,10 +343,13 @@ export const SubBlogPage = ({ blogId, onBack }) => {
 
             <BlogContent sections={sections} />
           </div>
+
         </div>
       </div>
 
       <CTASection
+        backgroundColor="#FFF1F1"
+        className="mt-[50px]"
         heading={blog.cta?.heading || "Ready to Elevate Your Packaging?"}
         subheading={
           blog.cta?.subheading ||

@@ -3,14 +3,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../src/index.css";
 
-export default function Layout({ children }) { 
+export default function Layout({ children }) {
   useEffect(() => {
     const CURSOR = "url(/images/red-circle.svg) 10 10, auto";
 
     const forceRedCircle = () => {
       document.documentElement.style.setProperty("cursor", CURSOR, "important");
       document.body.style.setProperty("cursor", CURSOR, "important");
-` `
+
       // Force on every single element in DOM
       document.querySelectorAll("*").forEach((el) => {
         el.style.setProperty("cursor", CURSOR, "important");

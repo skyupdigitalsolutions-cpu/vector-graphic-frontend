@@ -23,7 +23,7 @@ const SoftwarePill = ({ sw }) => (
       position: "relative",
       display: "inline-flex",
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "flex-start",
       gap: "14px",
       width: "270px",
       height: "80px",
@@ -122,7 +122,7 @@ const SoftwarePill = ({ sw }) => (
         position: "relative",
         zIndex: 4,
         flex: 1,
-        textAlign: "center",
+        textAlign: "left",
         fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
         fontSize: "18px",
@@ -186,7 +186,7 @@ export default function A2() {
 /* Mobile */
 @media (max-width:640px){
   .hero-section{
-    background-image: url('/images/About Us Software BG.webp');
+    background-image: url('/images/Aboutus_softwarebg.webp');
   }
 }
         @media (max-width: 768px) {

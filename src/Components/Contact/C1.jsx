@@ -378,7 +378,7 @@ export const C1 = () => {
         /* TABLET */
         @media (max-width: 1024px) {
           .c1-heading { font-size: 44px; }
-          .c1-card { border-radius: 60px; padding: 40px; }
+          .c1-card { border-radius: 40px; padding: 40px; }
           .c1-card-wrap { border-radius: 60px; }
           .c1-card-glow { border-radius: 60px; }
           .c1-card-glow { 

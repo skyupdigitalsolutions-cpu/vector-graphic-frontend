@@ -90,12 +90,17 @@ useEffect(() => {
         builds results-focused solutions tailored to your goals and market
         needs.
       </p>
-      <button
+      <a
+        href="/contactus"
         className="w-fit px-6 py-3 rounded-lg text-white text-[18px] font-semibold hover:opacity-90 active:scale-95 transition-all"
-        style={{ backgroundColor: "#C0160F", fontFamily: "poppins" }}
+        style={{
+          backgroundColor: "#C0160F",
+          fontFamily: "poppins",
+          textDecoration: "none",
+        }}
       >
         Contact Us
-      </button>
+      </a>
     </>
   );
 

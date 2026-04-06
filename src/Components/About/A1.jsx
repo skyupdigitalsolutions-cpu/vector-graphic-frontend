@@ -3,13 +3,13 @@ const A1 = () => (
     {/* Hero Image */}
       <div className="w-full">
         <img
-          src="/images/aboutus_banner.webp"
+          src="/images/About_banner.webp"
           alt="Food Packaging Design"
           className="w-full h-[250px] md:h-[400px] lg:h-[600px] object-cover"
         />
       </div>
     <section className="w-full bg-white">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-10 lg:py-16 xl:py-20">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-6 lg:px-12 xl:px-16 py-10 lg:py-16 xl:py-20">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10 xl:gap-14">
           {/* LEFT */}
           <div

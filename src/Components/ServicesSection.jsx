@@ -124,7 +124,7 @@ export default function ServicesSection() {
     <>
       <style>{`
         .services-section {
-          background-image: url('/public/images/Our_Service_Background_Mobile.webp');
+          background-image: url('/images/Our_Service_Background_Mobile.webp');
           background-size: 100% 100%;
           background-position: center top;
           background-repeat: no-repeat;
@@ -132,6 +132,7 @@ export default function ServicesSection() {
         @media (min-width: 768px) {
           .services-section {
             background-image: url('/images/service_banner.webp');
+            background-size: cover;
             background-position: center center;
           }
         }

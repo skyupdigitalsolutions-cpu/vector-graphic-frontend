@@ -55,9 +55,10 @@ const Home = () => {
       <OurWork />
       <ThoughtsSection
         onBlogClick={(id) => {
-          setActiveBlogId(id);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
+    history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    setActiveBlogId(id);
+  }}
       />
       <A5 />
       {/* <Cloudy  /> */}
