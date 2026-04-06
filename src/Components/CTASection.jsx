@@ -12,7 +12,7 @@ export default function CTASection({
   return (
     <section className="bg-black font-poppins">
       <div
-        className="flex flex-col lg:flex-row justify-between items-center text-center lg:text-start mx-auto
+        className="flex flex-col lg:flex-row justify-between items-center lg:text-start mx-auto
                    py-[40px] font-medium
                    md:py-[60px] md:px-[60px]
                    lg:py-[60px] lg:px-[80px]"
