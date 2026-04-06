@@ -6,7 +6,7 @@ const ThoughtsHeading = () => {
         <h4 className="h4 text-[14px] lg:text-[20px] font-medium">
           LEADING DESIGN AGENCY IN INDIA
         </h4>
-        <h1 className="h1 font-extrabold text-[20px] lg:text-[50px] py-2 px-3 lg:!px-0 lg:w-[797px]">
+        <h1 className="h1 font-extrabold text-[20px] lg:text-[50px] py-2 px-3 lg:!px-0 lg:w-[958px]">
           Creative Design Agency Building Powerful
           <span className="text-[#C92020]"> Brands Results</span>
         </h1>
