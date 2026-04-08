@@ -208,120 +208,99 @@ function RenderInline({ text }) {
   })}</>;
 }
 
-// ─── PREVIEW renderer (light white page — mirrors SubBlogPage) ────────────────
+// ─── PREVIEW renderer — mirrors SubBlogPage.jsx exactly ──────────────────────
 function PreviewSection({ s, usedH }) {
   const renderInline = (text) => <RenderInline text={text} />;
 
-  // Plain headings
-  if (["h2","h3","h4","h5","h6"].includes(s.type)) {
-    const st = HEADING_PREVIEW_STYLE[s.type];
-    const id = (() => {
-      const base = slugify(s.text || "");
-      const count = (usedH.get(base) || 0) + 1;
-      usedH.set(base, count);
-      return count === 1 ? base : `${base}-${count}`;
-    })();
-    return React.createElement(s.type, { id, style: { ...st, margin:"14px 0 6px", scrollMarginTop:80, fontFamily:"Unbounded,sans-serif" } }, renderInline(s.text));
+  if (s.type === "h2") {
+    const id = (()=>{ const base=slugify(s.text||""); const count=(usedH.get(base)||0)+1; usedH.set(base,count); return count===1?base:`${base}-${count}`; })();
+    return <h2 id={id} style={{ fontFamily:"Unbounded,sans-serif",fontSize:24,fontWeight:700,color:"#111",margin:"16px 0 4px",scrollMarginTop:112 }}>{renderInline(s.text)}</h2>;
   }
-
-  // Headings with link
+  if (s.type === "h3") {
+    const id = (()=>{ const base=slugify(s.text||""); const count=(usedH.get(base)||0)+1; usedH.set(base,count); return count===1?base:`${base}-${count}`; })();
+    return <h3 id={id} style={{ fontFamily:"Unbounded,sans-serif",fontSize:20,fontWeight:600,color:"#111",margin:"12px 0 4px",scrollMarginTop:112 }}>{renderInline(s.text)}</h3>;
+  }
+  if (["h4","h5","h6"].includes(s.type)) {
+    const sizes={h4:17,h5:15,h6:13};
+    const id = (()=>{ const base=slugify(s.text||""); const count=(usedH.get(base)||0)+1; usedH.set(base,count); return count===1?base:`${base}-${count}`; })();
+    return React.createElement(s.type,{ id, style:{ fontFamily:"Unbounded,sans-serif",fontSize:sizes[s.type],fontWeight:600,color:"#222",margin:"10px 0 4px",scrollMarginTop:112 } },renderInline(s.text));
+  }
   if (["h2_with_link","h3_with_link","h4_with_link","h5_with_link","h6_with_link"].includes(s.type)) {
-    const tag = getHeadingTag(s.type);
-    const st = HEADING_PREVIEW_STYLE[tag];
-    const id = (() => {
-      const base = slugify(s.linkText || "");
-      const count = (usedH.get(base) || 0) + 1;
-      usedH.set(base, count);
-      return count === 1 ? base : `${base}-${count}`;
-    })();
-    return React.createElement(tag, { id, style: { ...st, margin:"14px 0 6px", scrollMarginTop:80, fontFamily:"Unbounded,sans-serif" } }, [
-      s.textBefore ? s.textBefore + " " : "",
-      <a key="lnk" href={s.href} target="_blank" rel="noopener noreferrer" style={{ color:"#CC2200", textDecoration:"underline" }}>{s.linkText}</a>,
-      s.textAfter ? " " + s.textAfter : "",
+    const tag=getHeadingTag(s.type);
+    const sizes={h2:24,h3:20,h4:17,h5:15,h6:13};
+    const id = (()=>{ const base=slugify(s.linkText||""); const count=(usedH.get(base)||0)+1; usedH.set(base,count); return count===1?base:`${base}-${count}`; })();
+    return React.createElement(tag,{ id, style:{ fontFamily:"Unbounded,sans-serif",fontSize:sizes[tag],fontWeight:tag==="h2"?700:600,color:"#111",margin:"12px 0 4px",scrollMarginTop:112 } },[
+      s.textBefore?s.textBefore+" ":"",
+      <a key="lnk" href={s.href} target="_blank" rel="noopener noreferrer" style={{ color:"#CC2200",textDecoration:"underline" }}>{s.linkText}</a>,
+      s.textAfter?" "+s.textAfter:"",
     ]);
   }
-
   if (s.type === "bold")
-    return <p style={{ fontFamily:"Poppins,sans-serif", fontSize:14, fontWeight:700, color:"#333", lineHeight:1.7, margin:"10px 0" }}>{renderInline(s.text)}</p>;
-
+    return <p style={{ fontFamily:"Poppins,sans-serif",fontSize:15,fontWeight:700,color:"#4b5563",lineHeight:1.7,margin:"0" }}>{renderInline(s.text)}</p>;
   if (s.type === "quote")
     return (
-      <div style={{ borderLeft:"4px solid #aaa", paddingLeft:16, paddingTop:8, paddingBottom:8, background:"#f9f9f9", margin:"12px 0" }}>
-        <p style={{ fontFamily:"Poppins,sans-serif", fontSize:14, color:"#555", fontStyle:"italic", lineHeight:1.7, margin:0 }}>{renderInline(s.text)}</p>
+      <div style={{ borderLeft:"4px solid #d1d5db",paddingLeft:16,paddingTop:8,paddingBottom:8,background:"#f9fafb" }}>
+        <p style={{ fontFamily:"Poppins,sans-serif",fontSize:14,color:"#6b7280",fontStyle:"italic",lineHeight:1.7,margin:0 }}>{renderInline(s.text)}</p>
       </div>
     );
-
   if (s.type === "image")
     return (
-      <figure style={{ margin:"16px 0" }}>
-        {s.src
-          ? <img src={s.src} alt={s.caption||""} style={{ width:"100%", aspectRatio:"16/9", objectFit:"cover", borderRadius:8 }} />
-          : <div style={{ width:"100%", aspectRatio:"16/9", background:"#f0f0f0", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:8, color:"#aaa", fontSize:13, fontFamily:"Poppins,sans-serif" }}>No image uploaded</div>
-        }
-        {s.caption && <figcaption style={{ fontFamily:"Poppins,sans-serif", fontSize:12, color:"#888", textAlign:"center", marginTop:8, fontStyle:"italic" }}>{s.caption}</figcaption>}
+      <figure style={{ margin:"24px 0" }}>
+        <div style={{ width:"100%",aspectRatio:"16/9",background:"#f3f4f6",overflow:"hidden" }}>
+          {s.src
+            ?<img src={s.src} alt={s.caption||""} style={{ width:"100%",height:"100%",objectFit:"cover" }}/>
+            :<div style={{ width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",color:"#9ca3af",fontSize:13,fontFamily:"Poppins,sans-serif" }}>No image uploaded</div>
+          }
+        </div>
+        {s.caption&&<figcaption style={{ fontFamily:"Poppins,sans-serif",fontSize:12,color:"#9ca3af",textAlign:"center",marginTop:8,fontStyle:"italic" }}>{s.caption}</figcaption>}
       </figure>
     );
-
   if (s.type === "ul")
     return (
-      <ul style={{ paddingLeft:20, margin:"10px 0", listStyleType:"disc" }}>
-        {(s.text||[]).map((item,i) => <li key={i} style={{ fontFamily:"Poppins,sans-serif", fontSize:14, color:"#444", lineHeight:1.7, marginBottom:6 }}>{renderInline(item)}</li>)}
+      <ul style={{ paddingLeft:20,margin:"0",listStyleType:"disc" }}>
+        {(s.text||[]).map((item,i)=><li key={i} style={{ fontFamily:"Poppins,sans-serif",fontSize:14,color:"#4b5563",lineHeight:1.7,marginBottom:8 }}>{renderInline(item)}</li>)}
       </ul>
     );
-
   if (s.type === "ol")
     return (
-      <ol style={{ paddingLeft:20, margin:"10px 0", listStyleType:"decimal" }}>
-        {(s.text||[]).map((item,i) => <li key={i} style={{ fontFamily:"Poppins,sans-serif", fontSize:14, color:"#444", lineHeight:1.7, marginBottom:6 }}>{renderInline(item)}</li>)}
+      <ol style={{ paddingLeft:20,margin:"0",listStyleType:"decimal" }}>
+        {(s.text||[]).map((item,i)=><li key={i} style={{ fontFamily:"Poppins,sans-serif",fontSize:14,color:"#4b5563",lineHeight:1.7,marginBottom:8 }}>{renderInline(item)}</li>)}
       </ol>
     );
-
-  if (s.type === "table") {
+  if (s.type === "table")
     return (
-      <div style={{ overflowX:"auto", borderRadius:8, border:"1px solid #e5e7eb", margin:"12px 0" }}>
-        <table style={{ width:"100%", borderCollapse:"collapse", fontSize:14, fontFamily:"Poppins,sans-serif" }}>
-          <thead>
-            <tr>{(s.headers||[]).map((h,i) => <th key={i} style={{ textAlign:"left", padding:"10px 14px", fontWeight:700, borderBottom:"1px solid #e5e7eb", background: s.themed?"#f3edd8":"#fff", color:"#111" }}>{h}</th>)}</tr>
-          </thead>
-          <tbody>
-            {(s.rows||[]).map((row,ri) => (
-              <tr key={ri} style={{ background: s.themed?(ri%2===0?"#faf7ec":"#f5f0d8"):"#fff" }}>
-                {row.map((cell,ci) => <td key={ci} style={{ padding:"8px 14px", borderBottom:"1px solid #f0f0f0", color:"#444" }}>{cell}</td>)}
-              </tr>
-            ))}
-          </tbody>
+      <div style={{ overflowX:"auto",borderRadius:8,border:"1px solid #e5e7eb",margin:"0" }}>
+        <table style={{ width:"100%",borderCollapse:"collapse",fontSize:14,fontFamily:"Poppins,sans-serif" }}>
+          <thead><tr>{(s.headers||[]).map((h,i)=><th key={i} style={{ textAlign:"left",padding:"10px 14px",fontWeight:700,borderBottom:"1px solid #e5e7eb",background:s.themed?"#f3edd8":"#fff",color:"#111" }}>{h}</th>)}</tr></thead>
+          <tbody>{(s.rows||[]).map((row,ri)=><tr key={ri} style={{ background:s.themed?(ri%2===0?"#faf7ec":"#f5f0d8"):"#fff" }}>{row.map((cell,ci)=><td key={ci} style={{ padding:"8px 14px",borderBottom:"1px solid #f0f0f0",color:"#4b5563" }}>{cell}</td>)}</tr>)}</tbody>
         </table>
       </div>
     );
-  }
-
   if (s.type === "p_with_link")
     return (
-      <p style={{ fontFamily:"Poppins,sans-serif", fontSize:14, color:"#444", lineHeight:1.7, margin:"10px 0" }}>
-        {s.textBefore && <span>{s.textBefore} </span>}
-        <a href={s.href} style={{ color:"#CC2200", fontWeight:600, textDecoration:"underline" }}>{s.linkText}</a>
-        {s.textAfter && <span> {s.textAfter}</span>}
+      <p style={{ fontFamily:"Poppins,sans-serif",fontSize:15,color:"#4b5563",lineHeight:1.7,margin:"0" }}>
+        {s.textBefore&&<span>{s.textBefore} </span>}
+        <a href={s.href} style={{ color:"#CC2200",fontWeight:600,textDecoration:"underline" }}>{s.linkText}</a>
+        {s.textAfter&&<span> {s.textAfter}</span>}
       </p>
     );
-
   if (s.type === "p_with_bold")
     return (
-      <p style={{ fontFamily:"Poppins,sans-serif", fontSize:14, color:"#444", lineHeight:1.7, margin:"10px 0" }}>
-        {(s.parts||[]).map((part,i) => part.bold ? <strong key={i} style={{ color:"#111" }}>{part.text}</strong> : <span key={i}>{part.text}</span>)}
+      <p style={{ fontFamily:"Poppins,sans-serif",fontSize:15,color:"#4b5563",lineHeight:1.7,margin:"0" }}>
+        {(s.parts||[]).map((part,i)=>part.bold?<strong key={i} style={{ color:"#111" }}>{part.text}</strong>:<span key={i}>{part.text}</span>)}
       </p>
     );
-
   if (s.type === "p_with_link_bold")
     return (
-      <p style={{ fontFamily:"Poppins,sans-serif", fontSize:14, color:"#444", lineHeight:1.7, margin:"10px 0" }}>
-        {(s.partsBefore||[]).map((part,i) => part.bold ? <strong key={i} style={{ color:"#111" }}>{part.text}</strong> : <span key={i}>{part.text}</span>)}
-        {" "}<a href={s.href} style={{ color:"#CC2200", fontWeight:600, textDecoration:"underline" }}>{s.linkText}</a>{" "}
-        {(s.partsAfter||[]).map((part,i) => part.bold ? <strong key={i} style={{ color:"#111" }}>{part.text}</strong> : <span key={i}>{part.text}</span>)}
+      <p style={{ fontFamily:"Poppins,sans-serif",fontSize:15,color:"#4b5563",lineHeight:1.7,margin:"0" }}>
+        {(s.partsBefore||[]).map((part,i)=>part.bold?<strong key={i} style={{ color:"#111" }}>{part.text}</strong>:<span key={i}>{part.text}</span>)}
+        {" "}<a href={s.href} style={{ color:"#CC2200",fontWeight:600,textDecoration:"underline" }}>{s.linkText}</a>{" "}
+        {(s.partsAfter||[]).map((part,i)=>part.bold?<strong key={i} style={{ color:"#111" }}>{part.text}</strong>:<span key={i}>{part.text}</span>)}
       </p>
     );
-
-  return <p style={{ fontFamily:"Poppins,sans-serif", fontSize:14, color:"#444", lineHeight:1.7, margin:"10px 0" }}><RenderInline text={s.text} /></p>;
+  return <p style={{ fontFamily:"Poppins,sans-serif",fontSize:15,fontWeight:400,color:"#4b5563",lineHeight:1.7,margin:"0" }}><RenderInline text={s.text} /></p>;
 }
+
 
 // ═════════════════════════════════════════════════════════════════════════════
 // LOGIN SCREEN
@@ -1053,54 +1032,68 @@ function ThoughtEditor({ editingThought, onBack }) {
         )}
 
         <div style={{ background:"#fff",minHeight:"100vh" }}>
-          <div style={{ padding:"20px 80px 16px",textAlign:"center" }}>
-            <h1 style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:36,color:"#111",lineHeight:1.25,margin:"0 auto",maxWidth:900 }}>
+
+          {/* ── Title (matches SubBlogPage header) ── */}
+          <div style={{ padding:"24px 80px 16px",textAlign:"center" }}>
+            <h1 style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:50,color:"#111",lineHeight:1.25,margin:"0 auto",maxWidth:1200 }}>
               {meta.title||<span style={{ color:"#ccc",fontWeight:400,fontSize:24 }}>Your title appears here…</span>}
             </h1>
           </div>
 
-          <div style={{ padding:"0 80px 16px",display:"flex",flexDirection:"row",gap:64 }}>
-            {/* TOC */}
-            {previewMode&&toc.length>0&&(
-              <div style={{ width:300,flexShrink:0,paddingTop:8 }}>
-                <p style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:15,color:"#111",marginBottom:16 }}>In this article</p>
-                <div style={{ height:1,background:"#eee",marginBottom:8 }}/>
-                <ul style={{ listStyle:"none",margin:0,padding:0 }}>
-                  {toc.map(t=>{
-                    const isActive=t.id===activeId;
-                    const indent=t.level==="h3"?16:t.level==="h4"?28:t.level==="h5"?40:t.level==="h6"?52:0;
-                    return(
-                      <li key={t.id}>
-                        <button onClick={()=>scrollToId(t.id)} style={{ width:"100%",textAlign:"left",padding:"10px 12px",paddingLeft:12+indent,background:"transparent",border:"none",borderLeft:`2px solid ${isActive?"#CC2200":"transparent"}`,fontFamily:"Poppins,sans-serif",fontSize:13,fontWeight:isActive?600:400,color:isActive?"#CC2200":"#444",cursor:"pointer",lineHeight:1.5 }}>{t.text}</button>
-                        <div style={{ height:1,background:"#f5f5f5" }}/>
-                      </li>
-                    );
-                  })}
-                </ul>
+          {/* ── Main layout: sidebar + article (matches SubBlogPage) ── */}
+          <div style={{ padding:"32px 80px 16px",display:"flex",flexDirection:"row",gap:56,alignItems:"flex-start" }}>
+
+            {/* Sidebar TOC — matches SubBlogPage exactly */}
+            {toc.length>0&&(
+              <div style={{ width:400,flexShrink:0,position:"sticky",top:32 }}>
+                {/* Back button */}
+                <div style={{ display:"inline-flex",alignItems:"center",gap:8,borderRadius:4,fontSize:14,fontWeight:500,background:"#FFD7D7",padding:"10px 10px",color:"#000",marginBottom:24,fontFamily:"Poppins,sans-serif",cursor:"pointer" }}>
+                  <ArrowLeft size={16}/> Back to Thoughts
+                </div>
+
+                {/* TOC */}
+                <div style={{ paddingLeft:40 }}>
+                  <p style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:16,color:"#111",marginBottom:16,margin:"0 0 16px" }}>In this article</p>
+                  <div style={{ height:1,background:"#e5e7eb",marginBottom:8 }}/>
+                  <ul style={{ listStyle:"none",margin:0,padding:0 }}>
+                    {toc.map(t=>{
+                      const isActive=t.id===activeId;
+                      return(
+                        <li key={t.id}>
+                          <button onClick={()=>scrollToId(t.id)} style={{ width:"100%",textAlign:"left",padding:"12px 16px",background:"transparent",border:"none",borderLeft:`2px solid ${isActive?"#CC2200":"transparent"}`,fontFamily:"Poppins,sans-serif",fontSize:13,fontWeight:isActive?600:400,color:isActive?"#CC2200":"#444",cursor:"pointer",lineHeight:1.5 }}>{t.text}</button>
+                          <div style={{ height:1,background:"#f5f5f5" }}/>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
               </div>
             )}
 
-            {/* Content */}
-            <div style={{ flex:1,maxWidth:790 }}>
-              {/* Hero */}
-              <div style={{ marginBottom:24 }}>
-                <div style={{ position:"relative",width:"100%",aspectRatio:"16/9",background:"#f0f0f0",overflow:"hidden",borderRadius:12 }}>
+            {/* Article content — matches SubBlogPage */}
+            <div style={{ flex:1,maxWidth:790,marginLeft:toc.length===0?"auto":0,marginRight:toc.length===0?"auto":0 }}>
+
+              {/* Hero image card — matches SubBlogPage exactly */}
+              <div style={{ paddingTop:24,marginBottom:24 }}>
+                <div style={{ position:"relative",width:"100%",height:462,background:"#f3f4f6",overflow:"hidden",borderRadius:12 }}>
                   {meta.heroImage
                     ?<img src={meta.heroImage} alt={meta.title} style={{ width:"100%",height:"100%",objectFit:"cover" }}/>
                     :<div style={{ width:"100%",height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",color:"#bbb",gap:8 }}><ImageIcon size={28}/><span style={{ fontFamily:"Poppins,sans-serif",fontSize:13 }}>Hero image — upload in ⚙ Settings</span></div>
                   }
                   {meta.heroImage&&<>
-                    <div style={{ position:"absolute",bottom:0,left:0,right:0,height:"30%",background:"rgba(0,0,0,0.3)",backdropFilter:"blur(21px)" }}/>
-                    <div style={{ position:"absolute",bottom:0,left:0,right:0,padding:"16px 24px" }}>
-                      <h2 style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:20,color:"#fff",margin:"0 0 6px",lineHeight:1.3 }}>{meta.title}</h2>
-                      <p style={{ fontFamily:"Poppins,sans-serif",fontSize:12,color:"rgba(255,255,255,0.6)",margin:0 }}>{meta.date} · {meta.readTime}</p>
+                    {/* Blur overlay — 138px fixed like SubBlogPage */}
+                    <div style={{ position:"absolute",bottom:0,left:0,right:0,height:138,background:"rgba(0,0,0,0.3)",backdropFilter:"blur(21px)" }}/>
+                    {/* Caption bar — 130px fixed like SubBlogPage */}
+                    <div style={{ position:"absolute",bottom:0,left:0,right:0,height:130,display:"flex",flexDirection:"column",justifyContent:"center",padding:"16px 80px" }}>
+                      <h2 style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:24,color:"#fff",margin:"0 0 8px",lineHeight:1.3 }}>{meta.title}</h2>
+                      <p style={{ fontFamily:"Poppins,sans-serif",fontSize:14,color:"rgba(255,255,255,0.6)",margin:0 }}>{meta.date} · {meta.readTime}</p>
                     </div>
                   </>}
                 </div>
               </div>
 
               {/* Sections */}
-              <div style={{ display:"flex",flexDirection:"column",gap:12 }}>
+              <div style={{ display:"flex",flexDirection:"column",gap:20 }}>
                 {elements.length===0
                   ?<div style={{ textAlign:"center",padding:"60px 0",color:"#ccc" }}><Type size={40} style={{ margin:"0 auto 12px",display:"block",opacity:0.3 }}/><p style={{ fontFamily:"Poppins,sans-serif",fontSize:14 }}>No content blocks yet</p></div>
                   :previewMode
@@ -1126,10 +1119,10 @@ function ThoughtEditor({ editingThought, onBack }) {
             </div>
           </div>
 
-          {/* CTA */}
-          <div style={{ marginTop:40,background:"#111",padding:"48px 80px",textAlign:"center" }}>
-            <h2 style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:28,color:"#fff",margin:"0 0 12px" }}>{meta.ctaHeading}</h2>
-            <p style={{ fontFamily:"Poppins,sans-serif",fontSize:15,color:"#777",margin:"0 0 24px" }}>{meta.ctaSubheading}</p>
+          {/* CTA — matches SubBlogPage CTASection with backgroundColor="#FFF1F1" */}
+          <div style={{ marginTop:50,background:"#FFF1F1",padding:"64px 80px",textAlign:"center" }}>
+            <h2 style={{ fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:28,color:"#111",margin:"0 0 12px" }}>{meta.ctaHeading}</h2>
+            <p style={{ fontFamily:"Poppins,sans-serif",fontSize:15,color:"#666",margin:"0 0 24px" }}>{meta.ctaSubheading}</p>
             <button style={{ padding:"12px 32px",background:"#CC2200",border:"none",borderRadius:8,color:"#fff",fontFamily:"Unbounded,sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",letterSpacing:"0.03em" }}>Get in Touch</button>
           </div>
         </div>
