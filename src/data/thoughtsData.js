@@ -1,29 +1,5 @@
 export const THOUGHTS = [
-  {
-    "id": 7,
-    "slug": "h",
-    "title": "Hi shashi",
-    "category": "Design",
-    "date": "Apr 8, 2026",
-    "readTime": "5 min read",
-    "heroImage": "https://res.cloudinary.com/dirndjtve/image/upload/v1775644146/hplck5hxxwwvmndfbiyp.webp",
-    "src": "https://res.cloudinary.com/dirndjtve/image/upload/v1775644146/hplck5hxxwwvmndfbiyp.webp",
-    "description": "hlllo sir ",
-    "tags": [
-      "hello shashi"
-    ],
-    "cta": {
-      "heading": "Ready to Elevate Your Packaging?",
-      "subheading": "Drive faster business growth with innovative solutions."
-    },
-    "sections": [
-      {
-        "type": "p",
-        "text": "Hello shashi sir "
-      }
-    ]
-  },
-  {
+    {
     "id": 1,
     "slug": "2d-barcode-revolution",
     "title": "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026",
