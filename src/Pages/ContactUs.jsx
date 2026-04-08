@@ -71,7 +71,7 @@ const ContactUs = () => {
           },
         ]}
       />
-      <CTASection/>
+      <CTASection heading="Brand’s success together." subheading="Let’s build your"/>
       <Footer />
     </>
   );
