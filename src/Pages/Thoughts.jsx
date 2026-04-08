@@ -66,7 +66,7 @@ useEffect(() => {
       <Nav />
       <ThoughtsHeading />
       <WorkImage onCardClick={handleBlogClick} />
-      <CTASection heading="Start your project today." subheading="Ready to grow your brand with us?"/>
+      <CTASection heading="Start project today" subheading="Ready to grow your brand with us?"/>
       <Footer />
     </>
   );
