@@ -59,7 +59,7 @@ const Work = () => {
       <div>
         <ClientMarquee />
         <hr className=" bg-[#767474] h-[1px] w-full" />
-        <CTASection subheading="Want better control over your artwork?" heading="Book a consultation."/>
+        <CTASection subheading="Got a project in mind?" heading="Let’s build together"/>
       </div>
       <Footer />
     </>
