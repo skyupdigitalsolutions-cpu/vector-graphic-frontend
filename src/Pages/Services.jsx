@@ -182,7 +182,7 @@ const Services = () => {
       <Packaging />
       <ClientMarquee />
       <FAQSection faqs={enquire} />
-        <CTASection/>
+        <CTASection heading="Get your project plan today." subheading="Turn your ideas into reality."/>
       <Footer />
     </>
   );
