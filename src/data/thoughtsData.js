@@ -1,5 +1,4 @@
 export const THOUGHTS = [
- 
   {
     "id": 1,
     "slug": "2d-barcode-revolution",
@@ -7,10 +6,10 @@ export const THOUGHTS = [
     "category": "BLOG POST",
     "date": "March 10, 2026",
     "readTime": "7 min read",
-    "caption": "",
-    "description": "2D Barcodes in 2026: 7 Powerful Ways Businesses Are Transforming.",
-    "src": "/images/blog_1.webp",
     "heroImage": "/images/blog_1.webp",
+    "src": "/images/blog_1.webp",
+    "description": "2D Barcodes in 2026: 7 Powerful Ways Businesses Are Transforming.",
+    "tags": [],
     "cta": {
       "heading": "Inspired by this blog? Let our experts grow your brand.",
       "subheading": "Discover how our experts help grow your brand with smart strategies and proven results."
@@ -373,7 +372,7 @@ export const THOUGHTS = [
       {
         "type": "ul",
         "text": [
-          "product education",
+          "product education 1 2 3 ",
           "marketing campaigns",
           "customer feedback"
         ]
