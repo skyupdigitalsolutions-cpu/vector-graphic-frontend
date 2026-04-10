@@ -372,7 +372,7 @@ export const THOUGHTS = [
       {
         "type": "ul",
         "text": [
-          "product education 1 2 3 ",
+          "product education",
           "marketing campaigns",
           "customer feedback"
         ]
