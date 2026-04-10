@@ -1,5 +1,52 @@
 export const THOUGHTS = [
- 
+  {
+    "id": 7,
+    "slug": "h",
+    "title": "This is the main thing what we are going to do somehting ",
+    "category": "Design",
+    "date": "Apr 10, 2026",
+    "readTime": "5 min read",
+    "heroImage": "https://res.cloudinary.com/dirndjtve/image/upload/v1775795346/oj4yalbvfd5tw8u71uvp.webp",
+    "src": "https://res.cloudinary.com/dirndjtve/image/upload/v1775795346/oj4yalbvfd5tw8u71uvp.webp",
+    "description": "hello my name is sjs",
+    "tags": [
+      "hello 1 2 3"
+    ],
+    "cta": {
+      "heading": "Ready to Elevate Your Packaging?",
+      "subheading": "Drive faster business growth with innovative solutions."
+    },
+    "sections": [
+      {
+        "type": "p",
+        "text": "hello my name is sjs "
+      },
+      {
+        "type": "h2",
+        "text": "hello h2"
+      },
+      {
+        "type": "h3",
+        "text": "hello h3"
+      },
+      {
+        "type": "h3",
+        "text": "Sub-section Heading (H3)"
+      },
+      {
+        "type": "h4",
+        "text": "Minor Heading (H4)"
+      },
+      {
+        "type": "h5",
+        "text": "Small Heading (H5)"
+      },
+      {
+        "type": "h2",
+        "text": "Section Heading (H2)"
+      }
+    ]
+  },
   {
     "id": 1,
     "slug": "2d-barcode-revolution",
