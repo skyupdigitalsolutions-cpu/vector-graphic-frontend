@@ -8,7 +8,7 @@ export default function HeroSection() {
         We Build Packaging Designs That Convert -{" "}
         <span className="text-[#C92020]">Proven Results.</span>
       </h1>
-      <img src="/images/hero_section.webp"  alt="Premium Packaging Designs Agency in India"/>
+      <img src="/images/About_banner.png"  alt="Premium Packaging Designs Agency in India"/>
     </div>
   );
 }

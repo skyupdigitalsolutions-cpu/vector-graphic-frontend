@@ -123,7 +123,7 @@ const Services = () => {
       {/* Hero Image */}
       <div className="w-full flex justify-center items-center">
         <img
-          src="/images/service_banner_1.webp"
+          src="/images/image-2.jpg"
           alt="Food Packaging Design"
           className="w-full lg:w-[1295px] lg:h-[659px]"
         />
