@@ -82,10 +82,10 @@ export default function Footer() {
               </h3>
 
               <p className="text-[14px] sm:text-[15px] md:text-[18px] opacity-90">
-                Email : <a href="mailto:info@gmail.com">info@gmail.com</a>
+                Email : <a href="mailto:manju.swm@gmail.com">manju.swm@gmail.com</a>
               </p>
               <p className="text-[14px] sm:text-[15px] md:text-[18px] opacity-90">
-                <a href="tel:+91 9986655922">Phone : +91 9986655922</a>
+                <a href="tel:+919986655922">Phone : +91 9986655922</a>
               </p>
 
               <div className="flex gap-[18px] md:gap-[20px] mt-[6px]">
