@@ -473,7 +473,7 @@ export const C1 = () => {
       <section className="c1-section">
         <div className="c1-top-bg">
           <div className="c1-top-inner">
-            <h1 className="c1-heading">Get in touch</h1>
+            <h1 className="font-poppins text-[50px] font-bold">Get in touch</h1>
             <p className="c1-desc">
               Explore our gallery of completed projects across design,
               packaging, and print production. Each showcase highlights our

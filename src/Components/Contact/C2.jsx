@@ -16,7 +16,7 @@ const C2 = () => {
         <img src="/images/IconPhone.svg" alt="Phone" className="w-[40px] h-[40px]" />
       ),
       title: "Phone",
-      desc: "Mon-Fri from 8am to 5pm.",
+      desc: "Mon-Sat from 9:30 AM to 6 PM.",
       href: "tel:+919986655922",
       display: "+91 9986655922",
     },
@@ -29,7 +29,7 @@ const C2 = () => {
         />
       ),
       title: "Office",
-      desc: "Come say hello at our office HQ.",
+     
        href: "https://maps.app.goo.gl/3xxTiMAPiFdm8Sot9?g_st=aw",
        display: "Ground floor #27/3 , 3rd cross, backside of anjaneya temple, Near Nagasandra circle, Thrajanagar, Bengaluru  Karnataka -560028",
     },
@@ -41,12 +41,11 @@ const C2 = () => {
       <div className="w-[1280px] mx-auto flex flex-col gap-[60px] box-border max-lg:w-full max-lg:px-8 max-sm:w-full max-sm:px-5 max-sm:gap-[60px]">
         {/* Header */}
         <div className="w-[834px] flex flex-col gap-[30px] max-lg:w-full max-sm:w-full max-sm:gap-4">
-          <h1
-            className="text-[50px] leading-[1.4] m-0 text-[#131313] max-sm:text-[28px] max-sm:leading-snug"
-            style={{ fontFamily: "'Ultra', serif" }}
+          <h2
+            className="text-[50px] leading-[1.4] m-0 text-[#131313] max-sm:text-[28px] max-sm:leading-snug font-poppins font-bold"
           >
             We'd love to hear from you
-          </h1>
+          </h2>
 
           <p
             className="text-[14px] lg:text-[20px] text-black/55 m-0"

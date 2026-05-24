@@ -44,14 +44,7 @@ export default function Footer() {
             />
 
             <p className="text-[14px] sm:text-[15px] md:text-[18px] leading-[140%] opacity-90">
-              We have a proven track record of maintaining a solid relationship
-              with the client by thinking out of the box. Our services always
-              focus on igniting your ideas and inspiring you to improve. We have
-              carved a niche in brand enhancement for many clients across India,
-              USA, Australia, UAE and New Zealand. We at DesignerPeople have
-              innovative ideas to empower brands with creativity and diversity.
-              We ensure the brand's growth with professional touch and
-              refinement of artwork.
+              At The Vector Graphics, we turn ideas into impactful brand experiences. Specialising in packaging design, brand identity, and print solutions, we bring creativity and precision to every project. Based in Bengaluru, we serve businesses across globally — helping brands look their best from shelf to screen.
             </p>
           </div>
 
