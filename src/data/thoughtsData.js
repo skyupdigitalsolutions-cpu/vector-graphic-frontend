@@ -5,7 +5,7 @@ export const THOUGHTS = [
     "title": "Are You Ready for the 2D Barcode Revolution? 7 Powerful Ways 2D Barcodes Are Transforming Businesses in 2026",
     "category": "BLOG POST",
     "date": "March 10, 2026",
-    "readTime": "7 min read",
+    "readTime": "8 min read",
     "heroImage": "/images/blog_1.webp",
     "src": "/images/blog_1.webp",
     "description": "2D Barcodes in 2026: 7 Powerful Ways Businesses Are Transforming.",
