@@ -6,48 +6,48 @@ const slides = [
   [
     {
       id: 1,
-      src: "/images/workpage_1.webp",
+      src: "/images/image-3.jpg",
       alt: "Packaging design 1",
     },
     {
       id: 2,
-      src: "/images/workpage_2.webp",
+      src: "/images/image-4.jpg",
       alt: "Packaging design 2",
     },
   ],
   [
     {
       id: 3,
-      src: "/images/workpage_3.webp",
+      src: "/images/image-5.jpg",
       alt: "Packaging design 3",
     },
     {
       id: 4,
-      src: "/images/workpage_4.webp",
+      src: "/images/image-6.jpg",
       alt: "Packaging design 4",
     },
   ],
   [
     {
       id: 5,
-      src: "/images/workpage_5.webp",
+      src: "/images/image-7.jpg",
       alt: "Packaging design 5",
     },
     {
       id: 6,
-      src: "/images/workpage_6.webp",
+      src: "/images/image-8.jpg",
       alt: "Packaging design 6",
     },
   ],
   [
     {
       id: 7,
-      src: "/images/workpage_7.webp",
+      src: "/images/image-9.jpg",
       alt: "Packaging design 7",
     },
     {
       id: 8,
-      src: "/images/workpage_8.webp",
+      src: "/images/image-10.jpg",
       alt: "Packaging design 8",
     },
   ],
