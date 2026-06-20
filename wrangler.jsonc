@@ -1,0 +1,12 @@
+{
+  // Cloudflare Workers static-assets config for the prerendered Vike site.
+  // Place this file in your REPO ROOT (same folder as package.json), commit & push.
+  "name": "vector-graphic-frontend",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    // Vike's prerendered static output after `npm run build`.
+    "directory": "./dist/client",
+    // Serve the app shell for any unmatched path (SPA-style fallback).
+    "not_found_handling": "single-page-application"
+  }
+}
